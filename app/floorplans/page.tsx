@@ -10,7 +10,6 @@ import {
   X,
   Download,
   Share2,
-  ArrowRight,
   Menu,
   Plus,
   Minus,
@@ -30,47 +29,41 @@ const floorPlans = [
   {
     id: 1,
     title: "3-Bedroom Apartment",
-    subtitle: "FLOOR 1",
+    subtitle: "Ground Floor",
     image: "/images/plan1.png",
     pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "157 sq m",
+    interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
     exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
-    features: [
-      "Open plan living and dining",
-      "Master bedroom with ensuite",
-      "Walk-in closet",
-      "Porcelain tile flooring",
-      "Modern kitchen layout",
-    ],
+    features: ["Guest bedroom with ensuite", "Dining", "Kitchen", "Store room", "Living room", "Veranda at the back"],
   },
   {
     id: 2,
     title: "3-Bedroom with Balconies",
-    subtitle: "FLOOR 2",
+    subtitle: "FLOOR 1",
     image: "/images/plan2.png",
     pdfUrl: "/floorplans/floor2.pdf",
-    interiorSqft: "128 sq m",
+    interiorSqft: "278 sq m",
     exteriorSqft: "32 sq m",
     exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 0,
     features: [
-      "Multiple balconies",
-      "Spacious lounge area",
+      "Master bedroom + ensuite + walk-in closet",
+      "2 Bedrooms + ensuite(one of the beds having walk-in closet)",
       "Central dining space",
       "Modern kitchen with WIC",
-      "Ensuite master bedroom",
+      "Each bedroom has balcony access",
     ],
   },
   {
     id: 3,
     title: "Premium 3-Bedroom",
-    subtitle: "FLOOR 3",
+    subtitle: "FLOOR 2",
     image: "/images/plan3.png",
     pdfUrl: "/floorplans/floor3.pdf",
     interiorSqft: "128 sq m",
@@ -90,21 +83,21 @@ const floorPlans = [
   {
     id: 4,
     title: "Luxury Single Storey",
-    subtitle: "GROUND FLOOR",
+    subtitle: "Single Storey",
     image: "/images/plan4.jpg",
     pdfUrl: "/floorplans/floor4.pdf",
-    interiorSqft: "180 sq m",
+    interiorSqft: "204 sq m",
     exteriorSqft: "45 sq m",
     exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
     features: [
-      "Alfresco dining area",
+      "Alfresco at the back",
       "Family room and lounge",
       "Scullery and modern kitchen",
       "Master bedroom with ensuite",
-      "Double driveway access",
+      "Dining",
     ],
   },
 ]
@@ -205,6 +198,44 @@ export default function FloorplansPage() {
     setIsDragging(false)
   }
 
+  // Touch handlers for mobile zoom
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1 && isZoomed) {
+      const touch = e.touches[0]
+      setIsDragging(true)
+      // Store initial touch position for dragging
+    } else if (e.touches.length === 2) {
+      // Handle pinch zoom start
+      const touch1 = e.touches[0]
+      const touch2 = e.touches[1]
+      const distance = Math.sqrt(
+        Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2),
+      )
+      // Store initial distance for pinch zoom
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    e.preventDefault()
+    if (e.touches.length === 1 && isDragging && isZoomed) {
+      // Handle single finger drag
+      const touch = e.touches[0]
+      // Calculate movement and update drag position
+    } else if (e.touches.length === 2) {
+      // Handle pinch zoom
+      const touch1 = e.touches[0]
+      const touch2 = e.touches[1]
+      const distance = Math.sqrt(
+        Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2),
+      )
+      // Calculate zoom based on distance change
+    }
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+  }
+
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen)
   }
@@ -260,7 +291,7 @@ export default function FloorplansPage() {
           <div className="flex items-center space-x-4">
             {/* Compare Mode Toggle */}
             <Button
-              variant={isCompareMode ? "default" as const : "outline" as const}
+              variant={isCompareMode ? ("default" as const) : ("outline" as const)}
               size="sm"
               onClick={toggleCompareMode}
               className="hidden md:flex"
@@ -353,11 +384,7 @@ export default function FloorplansPage() {
               </Badge>
             </div>
             <div className="flex items-center space-x-2">
-              {selectedPlans.length === 2 && (
-                <Button onClick={startComparison}>
-                  Compare Now
-                </Button>
-              )}
+              {selectedPlans.length === 2 && <Button onClick={startComparison}>Compare Now</Button>}
               <Button variant="ghost" size="sm" onClick={resetComparison}>
                 Reset
               </Button>
@@ -393,7 +420,7 @@ export default function FloorplansPage() {
                       transition={{ duration: 0.3 }}
                     >
                       <Button
-                        variant={selectedPlans.includes(currentPlan) ? "default" as const : "outline" as const}
+                        variant={selectedPlans.includes(currentPlan) ? ("default" as const) : ("outline" as const)}
                         size="sm"
                         onClick={() => togglePlanSelection(currentPlan)}
                         disabled={!selectedPlans.includes(currentPlan) && selectedPlans.length >= 2}
@@ -612,6 +639,9 @@ export default function FloorplansPage() {
                             style={{
                               cursor: isZoomed ? "grab" : isFullscreen ? "default" : "pointer",
                             }}
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
                           >
                             <div
                               style={{
@@ -640,42 +670,104 @@ export default function FloorplansPage() {
                       </div>
 
                       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-                        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0">
+                        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black">
                           <div
-                            className="relative w-full h-full overflow-hidden bg-white p-8"
+                            className="relative w-full h-full overflow-hidden"
                             ref={imageRef}
                             onMouseDown={handleMouseDown}
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseUp}
-                            style={{ cursor: isZoomed ? "grab" : "default" }}
+                            style={{ cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "default" }}
                           >
-                            {/* Zoom Controls */}
-                            <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                            {/* Enhanced Controls */}
+                            <div className="absolute top-4 right-4 z-20 flex flex-col space-y-2">
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="bg-white/80 hover:bg-white rounded-full w-8 h-8 p-0"
+                                className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-10 h-10 p-0"
+                                onClick={() => setIsModalOpen(false)}
+                              >
+                                <X className="h-4 w-4" />
+                              </Button>
+                            </div>
+
+                            <div className="absolute top-4 left-4 z-20 flex space-y-2 flex-col">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-10 h-10 p-0"
                                 onClick={handleZoomIn}
+                                disabled={zoomLevel >= 3}
                               >
                                 <Plus className="h-4 w-4" />
                               </Button>
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="bg-white/80 hover:bg-white rounded-full w-8 h-8 p-0"
+                                className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-10 h-10 p-0"
                                 onClick={handleZoomOut}
-                                disabled={!isZoomed}
+                                disabled={zoomLevel <= 1}
                               >
                                 <Minus className="h-4 w-4" />
                               </Button>
+                              {isZoomed && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-10 h-10 p-0"
+                                  onClick={() => {
+                                    setZoomLevel(1)
+                                    setIsZoomed(false)
+                                    setDragPosition({ x: 0, y: 0 })
+                                  }}
+                                  title="Reset zoom"
+                                >
+                                  <Maximize className="h-4 w-4" />
+                                </Button>
+                              )}
+                            </div>
+
+                            {/* Zoom Level Indicator */}
+                            {isZoomed && (
+                              <div className="absolute bottom-4 left-4 z-20">
+                                <div className="bg-black/80 text-white px-3 py-1 rounded-full text-sm">
+                                  {Math.round(zoomLevel * 100)}%
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Navigation arrows in modal */}
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/80 hover:bg-black/90 text-white rounded-full w-12 h-12 p-0"
+                              onClick={prevPlan}
+                            >
+                              <ChevronLeft className="h-6 w-6" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/80 hover:bg-black/90 text-white rounded-full w-12 h-12 p-0"
+                              onClick={nextPlan}
+                            >
+                              <ChevronRight className="h-6 w-6" />
+                            </Button>
+
+                            {/* Plan info overlay */}
+                            <div className="absolute bottom-4 right-4 z-20">
+                              <div className="bg-black/80 text-white px-4 py-2 rounded-lg">
+                                <p className="text-xs opacity-75">{plan.subtitle}</p>
+                                <p className="text-sm font-medium">{plan.title}</p>
+                              </div>
                             </div>
 
                             <div
                               ref={imageContainerRef}
                               className="relative w-full h-full flex items-center justify-center"
                               style={{
-                                cursor: isZoomed ? "grab" : "default",
+                                cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "default",
                               }}
                             >
                               <div
@@ -695,6 +787,7 @@ export default function FloorplansPage() {
                                     width: "auto",
                                     height: "auto",
                                   }}
+                                  priority
                                 />
                               </div>
                             </div>
@@ -779,18 +872,116 @@ export default function FloorplansPage() {
 
             {/* Mobile Navigation */}
             {isMobile && (
-              <div className="mt-4 flex justify-between items-center px-2">
-                <Button variant="ghost" size="sm" onClick={prevPlan} className="text-gray-600">
-                  <ChevronLeft className="h-5 w-5 mr-1" />
-                  Previous
-                </Button>
-                <span className="text-sm text-gray-500">
-                  {currentPlan + 1} / {floorPlans.length}
-                </span>
-                <Button variant="ghost" size="sm" onClick={nextPlan} className="text-gray-600">
-                  Next
-                  <ChevronRight className="h-5 w-5 ml-1" />
-                </Button>
+              <div className="mt-6 space-y-4">
+                {/* Mobile Plan Info */}
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm text-gray-500">
+                      {currentPlan + 1} / {floorPlans.length}
+                    </span>
+                    {isCompareMode && (
+                      <Button
+                        variant={selectedPlans.includes(currentPlan) ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => togglePlanSelection(currentPlan)}
+                        disabled={!selectedPlans.includes(currentPlan) && selectedPlans.length >= 2}
+                        className="text-xs px-2 py-1 h-7"
+                      >
+                        {selectedPlans.includes(currentPlan) ? (
+                          <>
+                            <Check className="h-3 w-3 mr-1" />
+                            Selected
+                          </>
+                        ) : (
+                          "Select"
+                        )}
+                      </Button>
+                    )}
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <Button variant="ghost" size="sm" onClick={prevPlan} className="text-gray-600 px-2">
+                      <ChevronLeft className="h-4 w-4 mr-1" />
+                      Previous
+                    </Button>
+
+                    <div className="text-center">
+                      <p className="text-xs text-gray-500 mb-1">{plan.subtitle}</p>
+                      <p className="text-sm font-medium text-gray-900">{plan.title}</p>
+                    </div>
+
+                    <Button variant="ghost" size="sm" onClick={nextPlan} className="text-gray-600 px-2">
+                      Next
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Mobile Specifications Grid */}
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">Specifications</h3>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Interior</p>
+                      <p className="font-medium">{plan.interiorSqft}</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Exterior</p>
+                      <p className="font-medium">{plan.exteriorSqft}</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Bedrooms</p>
+                      <p className="font-medium">{plan.bedrooms}</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <p className="text-xs text-gray-500 mb-1">Bathrooms</p>
+                      <p className="font-medium">{plan.bathrooms}</p>
+                    </div>
+                    {plan.powderRooms > 0 && (
+                      <>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-xs text-gray-500 mb-1">Powder Rooms</p>
+                          <p className="font-medium">{plan.powderRooms}</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-xs text-gray-500 mb-1">Exposure</p>
+                          <p className="font-medium">{plan.exposure}</p>
+                        </div>
+                      </>
+                    )}
+                    {plan.powderRooms === 0 && (
+                      <div className="bg-gray-50 p-3 rounded-lg col-span-2">
+                        <p className="text-xs text-gray-500 mb-1">Exposure</p>
+                        <p className="font-medium">{plan.exposure}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Mobile Features */}
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">Features</h3>
+                  <ul className="space-y-2">
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="text-sm text-gray-700 flex items-start">
+                        <span className="text-gray-400 mr-2 mt-1">•</span>
+                        <span className="flex-1">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Mobile Action Buttons */}
+                <div className="space-y-2">
+                  <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white" onClick={handleDownload}>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Floor Plan
+                  </Button>
+                  <Button variant="outline" className="w-full border-gray-300 hover:border-gray-900">
+                    <Share2 className="mr-2 h-4 w-4" />
+                    Share Plan
+                  </Button>
+                </div>
               </div>
             )}
           </div>
