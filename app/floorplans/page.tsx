@@ -378,7 +378,7 @@ export default function FloorplansPage() {
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <p className="text-blue-800 font-medium">Compare Mode: Select up to 2 floor plans to compare</p>
+              <p className="text-blue-800 font-medium">Compare Mode: Select 2 floor plans to compare</p>
               <Badge variant="secondary" className="bg-blue-100 text-blue-800">
                 {selectedPlans.length}/2 selected
               </Badge>
