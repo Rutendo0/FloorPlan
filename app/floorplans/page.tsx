@@ -285,7 +285,7 @@ export default function FloorplansPage() {
       <header className="bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-50 shadow-sm">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-light tracking-wide text-gray-900">Goodhope RESIDENCES</h1>
+            <h1 className="text-xl font-light tracking-wide text-gray-900"><a href="https://good-hope.vercel.app">Goodhope RESIDENCES</a></h1>
           </div>
 
           <div className="flex items-center space-x-4">
