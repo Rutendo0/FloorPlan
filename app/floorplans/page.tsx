@@ -85,8 +85,6 @@ const floorPlans = [
     features: ["Main bedroom with ensuite", "Dining", "Kitchen", "Store room", "Living room"],
   },
   
-  
-  
   {
     id: 5,
     title: "3-Bedroom Apartment",
@@ -159,6 +157,26 @@ const floorPlans = [
       "Scullery and modern kitchen",
       "Master bedroom with ensuite",
       "Dining",
+    ],
+  },
+  {
+    id: 9,
+    title: "4-Bedroom Single Storey",
+    subtitle: "Single Storey",
+    image: "/images/4-bed.png",
+    pdfUrl: "/floorplans/floor4.pdf",
+    interiorSqft: "204 sq m",
+    exteriorSqft: "45 sq m",
+    exposure: "N,E,S,W",
+    bedrooms: 4,
+    powderRooms: 1,
+    features: [
+      "Alfresco at the back",
+      "Family room and lounge",
+      "Scullery and modern kitchen",
+      "Guest bedroom with ensuite",
+      "Car Parking Space",
+      "Dining & Living Room",
     ],
   },
 ]
