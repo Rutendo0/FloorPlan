@@ -12,7 +12,7 @@ export default function HomePage() {
       <header className="bg-white border-b border-gray-100 px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-light tracking-wide text-gray-900">GOODHOPE RESIDENCES</h1>
+            <h1 className="text-xl font-light tracking-wide text-gray-900">Ashumi Estates</h1>
           </div>
           <nav className="hidden md:flex space-x-6">
             <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
