@@ -1,30 +1,12 @@
-
 "use client"
 
 import type React from "react"
-
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
-import {
-  ChevronLeft,
-  ChevronRight,
-  X,
-  Download,
-  Share2,
-  Menu,
-  Plus,
-  Minus,
-  GitCompare,
-  Check,
-  Maximize,
-} from "lucide-react"
+import { X, Download, Share2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
-import { useMediaQuery } from "@/hooks/use-media-query"
 
 const floorPlans = [
   {
@@ -35,13 +17,16 @@ const floorPlans = [
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Swimming Pool", "Dining", "Veranda at the back", 
-      "Parking Space"
-    ],
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Swimming Pool", "Dining", "Veranda at the back", "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
+      { id: 2, name: "Living Room", image: "/images/plan2.png" },
+      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
+      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+    ]
   },
   {
     id: 2,
@@ -51,11 +36,14 @@ const floorPlans = [
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
     features: ["Back Elevation", "Side Elevation", "Side Elevation 2"],
+    interiorImages: [
+      { id: 1, name: "Front View", image: "/images/3Bedroom.png" },
+      { id: 2, name: "Side View", image: "/images/plan2.png" }
+    ]
   },
   {
     id: 3,
@@ -65,1157 +53,430 @@ const floorPlans = [
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
     features: ["Master bedroom with ensuite", "Dining", "Kitchen", "Pantry", "Enough Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
+      { id: 2, name: "Kitchen & Dining", image: "/images/plan2.png" },
+      { id: 3, name: "Living Area", image: "/images/plan3.png" },
+      { id: 4, name: "Exterior View", image: "/images/plan4.jpg" }
+    ]
   },
   {
     id: 4,
     title: "First Floor 3-Bedrooms",
-    subtitle: "Ground Floor",
+    subtitle: "First Floor",
     image: "/images/First Floor Double Storey.png",
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
     features: ["Main bedroom with ensuite", "Dining", "Kitchen", "Store room", "Living room"],
+    interiorImages: [
+      { id: 1, name: "Bedroom 1", image: "/images/plan1.png" },
+      { id: 2, name: "Bedroom 2", image: "/images/plan2.png" },
+      { id: 3, name: "Central Living", image: "/images/plan3.png" },
+      { id: 4, name: "Common Area", image: "/images/plan4.jpg" }
+    ]
   },
-  
   {
     id: 5,
-    title: "3-Bedroom Apartment",
-    subtitle: "Ground Floor",
-    image: "/images/plan1.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "245 sq m",
-    exteriorSqft: "25 sq m",
-    exposure: "N,E,S,W",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Dining", "Kitchen", "Store room", "Living room", "Veranda at the back"],
-  },
-  {
-    id: 6,
-    title: "3-Bedroom with Balconies",
-    subtitle: "FLOOR 1",
-    image: "/images/plan2.png",
-    pdfUrl: "/floorplans/floor2.pdf",
-    interiorSqft: "278 sq m",
-    exteriorSqft: "32 sq m",
-    exposure: "N,E,S,W",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 0,
-    features: [
-      "Master bedroom + ensuite + walk-in closet",
-      "2 Bedrooms + ensuite(one of the beds having walk-in closet)",
-      "Central dining space",
-      "Modern kitchen with WIC",
-      "Each bedroom has balcony access",
-    ],
-  },
-  {
-    id: 7,
-    title: "Premium 3-Bedroom",
-    subtitle: "FLOOR 2",
-    image: "/images/plan3.png",
-    pdfUrl: "/floorplans/floor3.pdf",
-    interiorSqft: "128 sq m",
-    exteriorSqft: "28 sq m",
-    exposure: "N,E,S,W",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 0,
-    features: [
-      "Corner balcony access",
-      "Open plan living",
-      "Separate dining area",
-      "Walk-in closet",
-      "Dual bathroom access",
-    ],
-  },
-  {
-    id: 8,
     title: "Luxury Single Storey",
     subtitle: "Single Storey",
     image: "/images/plan4.jpg",
     pdfUrl: "/floorplans/floor4.pdf",
     interiorSqft: "204 sq m",
     exteriorSqft: "45 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
-    features: [
-      "Alfresco at the back",
-      "Family room and lounge",
-      "Scullery and modern kitchen",
-      "Master bedroom with ensuite",
-      "Dining",
-    ],
+    features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Master bedroom with ensuite", "Dining"],
+    interiorImages: [
+      { id: 1, name: "Family Room", image: "/images/plan1.png" },
+      { id: 2, name: "Master Suite", image: "/images/plan2.png" },
+      { id: 3, name: "Alfresco", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 4, name: "Kitchen", image: "/images/plan3.png" }
+    ]
   },
   {
-    id: 9,
+    id: 6,
     title: "4-Bedroom Single Storey",
     subtitle: "Single Storey",
     image: "/images/4-bed.png",
     pdfUrl: "/floorplans/floor4.pdf",
     interiorSqft: "204 sq m",
     exteriorSqft: "45 sq m",
-    exposure: "N,E,S,W",
     bedrooms: 4,
+    bathrooms: 2,
     powderRooms: 1,
-    features: [
-      "Alfresco at the back",
-      "Family room and lounge",
-      "Scullery and modern kitchen",
-      "Guest bedroom with ensuite",
-      "Car Parking Space",
-      "Dining & Living Room",
-    ],
+    features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Guest bedroom with ensuite", "Car Parking Space", "Dining & Living Room"],
+    interiorImages: [
+      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
+      { id: 2, name: "Family Living", image: "/images/plan2.png" },
+      { id: 3, name: "Kitchen Area", image: "/images/plan4.jpg" },
+      { id: 4, name: "Dining Room", image: "/images/plan3.png" }
+    ]
   },
+{
+    id: 7,
+    title: "4-Bedroom Double Storey Semi-Detached Duplex",
+    subtitle: "Ground Floor",
+    image: "/images/4-bedroom1.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "340 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 4,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen",  "Dining",  "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
+      { id: 2, name: "Living Room", image: "/images/plan2.png" },
+      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
+      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+    ]
+  },
+  {
+    id: 8,
+    title: "4-Bedroom Double Storey Semi-Detached Duplex",
+    subtitle: "Ground Floor",
+    image: "/images/4-Bedroom.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "377 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 4,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen",  "Dining",  "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
+      { id: 2, name: "Living Room", image: "/images/plan2.png" },
+      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
+      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+    ]
+  },
+
 ]
 
 export default function FloorplansPage() {
-  const [currentPlan, setCurrentPlan] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isZoomed, setIsZoomed] = useState(false)
-  const [zoomLevel, setZoomLevel] = useState(1)
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragPosition, setDragPosition] = useState({ x: 0, y: 0 })
-  const [isCompareMode, setIsCompareMode] = useState(false)
-  const [selectedPlans, setSelectedPlans] = useState<number[]>([])
-  const [isCompareDialogOpen, setIsCompareDialogOpen] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState<any>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [selectedImage, setSelectedImage] = useState<any>(null)
+  const [isImageDialogOpen, setIsImageDialogOpen] = useState(false)
 
-  const imageRef = useRef<HTMLDivElement>(null)
-  const imageContainerRef = useRef<HTMLDivElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const comparisonRef = useRef<HTMLDivElement>(null)
-  const isMobile = useMediaQuery("(max-width: 768px)")
-
-  const plan = floorPlans[currentPlan]
-
-  // Add smooth scrolling to the entire page
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth"
-    return () => {
-      document.documentElement.style.scrollBehavior = ""
-    }
-  }, [])
-
-  // Reset zoom and position when changing plans
-  useEffect(() => {
-    setIsZoomed(false)
-    setZoomLevel(1)
-    setDragPosition({ x: 0, y: 0 })
-  }, [currentPlan])
-
-  // Handle fullscreen mode
-  useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsFullscreen(false)
-      }
-    }
-    window.addEventListener("keydown", handleEsc)
-    return () => {
-      window.removeEventListener("keydown", handleEsc)
-    }
-  }, [])
-
-  const nextPlan = () => {
-    setCurrentPlan((prev) => (prev + 1) % floorPlans.length)
+  const handlePlanClick = (plan: any) => {
+    setSelectedPlan(plan)
+    setCurrentImageIndex(0)
   }
 
-  const prevPlan = () => {
-    setCurrentPlan((prev) => (prev - 1 + floorPlans.length) % floorPlans.length)
-  }
-
-  const handleDownload = () => {
-    alert(`Downloading ${plan.title} floor plan...`)
-  }
-
-  const handleZoomIn = () => {
-    if (zoomLevel < 3) {
-      setZoomLevel((prev) => prev + 0.5)
-      setIsZoomed(true)
-    }
-  }
-
-  const handleZoomOut = () => {
-    if (zoomLevel > 1) {
-      setZoomLevel((prev) => prev - 0.5)
-      if (zoomLevel <= 1.5) {
-        setIsZoomed(false)
-        setDragPosition({ x: 0, y: 0 })
-      }
-    }
-  }
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (isZoomed) {
-      setIsDragging(true)
-    }
-  }
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging && isZoomed) {
-      setDragPosition((prev) => ({
-        x: prev.x + e.movementX,
-        y: prev.y + e.movementY,
-      }))
-    }
-  }
-
-  const handleMouseUp = () => {
-    setIsDragging(false)
-  }
-
-  // Touch handlers for mobile zoom
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1 && isZoomed) {
-      const touch = e.touches[0]
-      setIsDragging(true)
-      // Store initial touch position for dragging
-    } else if (e.touches.length === 2) {
-      // Handle pinch zoom start
-      const touch1 = e.touches[0]
-      const touch2 = e.touches[1]
-      const distance = Math.sqrt(
-        Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2),
+  const nextImage = () => {
+    if (selectedPlan && selectedPlan.interiorImages) {
+      setCurrentImageIndex((prev) => 
+        (prev + 1) % selectedPlan.interiorImages.length
       )
-      // Store initial distance for pinch zoom
     }
   }
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    e.preventDefault()
-    if (e.touches.length === 1 && isDragging && isZoomed) {
-      // Handle single finger drag
-      const touch = e.touches[0]
-      // Calculate movement and update drag position
-    } else if (e.touches.length === 2) {
-      // Handle pinch zoom
-      const touch1 = e.touches[0]
-      const touch2 = e.touches[1]
-      const distance = Math.sqrt(
-        Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2),
+  const prevImage = () => {
+    if (selectedPlan && selectedPlan.interiorImages) {
+      setCurrentImageIndex((prev) => 
+        (prev - 1 + selectedPlan.interiorImages.length) % selectedPlan.interiorImages.length
       )
-      // Calculate zoom based on distance change
     }
   }
 
-  const handleTouchEnd = () => {
-    setIsDragging(false)
+  const handleImageClick = (image: any) => {
+    setSelectedImage(image)
+    setIsImageDialogOpen(true)
   }
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen)
-  }
-
-  // Comparison functions
-  const toggleCompareMode = () => {
-    setIsCompareMode(!isCompareMode)
-    if (!isCompareMode) {
-      setSelectedPlans([])
-    }
-  }
-
-  const togglePlanSelection = (planIndex: number) => {
-    if (selectedPlans.includes(planIndex)) {
-      setSelectedPlans(selectedPlans.filter((p) => p !== planIndex))
-    } else if (selectedPlans.length < 2) {
-      setSelectedPlans([...selectedPlans, planIndex])
-    }
-  }
-
-  const startComparison = () => {
-    if (selectedPlans.length === 2) {
-      setIsCompareDialogOpen(true)
-    }
-  }
-
-  const resetComparison = () => {
-    setSelectedPlans([])
-    setIsCompareMode(false)
-    setIsCompareDialogOpen(false)
-  }
-
-  const getComparisonData = () => {
-    if (selectedPlans.length !== 2) return null
-
-    const plan1 = floorPlans[selectedPlans[0]]
-    const plan2 = floorPlans[selectedPlans[1]]
-
-    return { plan1, plan2 }
-  }
-
-  const comparisonData = getComparisonData()
 
   return (
-    <div className="min-h-screen bg-stone-50 overflow-x-hidden" ref={scrollRef}>
-      {/* Header - Clean and minimal like Brook */}
-      <header className="bg-white/95 backdrop-blur-md border-b border-stone-200/50 px-6 py-4 sticky top-0 z-50">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-light text-stone-800 tracking-wide">
-              <a href="https://good-hope.vercel.app" className="hover:text-amber-600 transition-colors duration-300">
-               Ashumi Estates
-              </a>
-            </h1>
-          </div>
-
-          <div className="flex items-center space-x-6">
-            {/* Compare Mode Toggle */}
-            <Button
-              variant={isCompareMode ? ("default" as const) : ("ghost" as const)}
-              size="sm"
-              onClick={toggleCompareMode}
-              className={`hidden md:flex text-sm font-light tracking-wide transition-all duration-300 ${
-                isCompareMode 
-                  ? "bg-amber-600 hover:bg-amber-700 text-white" 
-                  : "text-stone-600 hover:text-amber-600 hover:bg-amber-50"
-              }`}
-            >
-              <GitCompare className="h-4 w-4 mr-2" />
-              {isCompareMode ? "Exit Compare" : "Compare"}
-            </Button>
-
-            {isMobile ? (
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm">
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent className="w-80">
-                  <div className="py-6 space-y-6">
-                    <h2 className="text-xl font-medium">Floor Plans</h2>
-
-                    {/* Mobile Compare Toggle */}
-                    <Button
-                      variant={isCompareMode ? "default" : "outline"}
-                      size="sm"
-                      onClick={toggleCompareMode}
-                      className="w-full"
-                    >
-                      <GitCompare className="h-4 w-4 mr-2" />
-                      {isCompareMode ? "Exit Compare" : "Compare Plans"}
-                    </Button>
-
-                    <div className="space-y-3">
-                      {floorPlans.map((planItem, index) => (
-                        <div key={planItem.id} className="flex items-center space-x-2">
-                          <Button
-                            variant={index === currentPlan ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => {
-                              setCurrentPlan(index)
-                            }}
-                            className="flex-1 justify-start text-sm"
-                          >
-                            {planItem.title}
-                          </Button>
-                          {isCompareMode && (
-                            <Button
-                              variant={selectedPlans.includes(index) ? "default" : "outline"}
-                              size="sm"
-                              onClick={() => togglePlanSelection(index)}
-                              disabled={!selectedPlans.includes(index) && selectedPlans.length >= 2}
-                              className="w-10 h-8 p-0"
-                            >
-                              {selectedPlans.includes(index) ? <Check className="h-4 w-4" /> : "+"}
-                            </Button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {isCompareMode && selectedPlans.length === 2 && (
-                      <Button onClick={startComparison} className="w-full">
-                        Compare Selected Plans
-                      </Button>
-                    )}
-                  </div>
-                </SheetContent>
-              </Sheet>
-            ) : (
-              <Button variant="ghost" size="sm">
-                <X className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-100 px-4 sm:px-6 py-4 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <h1 className="text-lg sm:text-xl font-light text-gray-900">
+            <a href="https://good-hope.vercel.app" className="hover:text-gray-600 transition-colors">
+              Ashumi Estates
+            </a>
+          </h1>
+          <div className="text-xs sm:text-sm text-gray-500">Floor Plans</div>
         </div>
       </header>
 
-      {/* Compare Mode Banner */}
-      {isCompareMode && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="bg-amber-50/70 border-b border-amber-100 px-6 py-4"
-        >
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <p className="text-stone-700 font-light">Compare Mode: Select 2 floor plans</p>
-              <Badge variant="secondary" className="bg-amber-100 text-amber-700 font-light">
-                {selectedPlans.length}/2 selected
-              </Badge>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 lg:py-12">
+        {!selectedPlan ? (
+          // Grid View - Select a floor plan
+          <div>
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-gray-900 mb-4">Choose Your Floor Plan</h1>
+              <p className="text-base sm:text-lg text-gray-600 px-4">Select a floor plan to explore room details and interior designs</p>
             </div>
-            <div className="flex items-center space-x-2">
-              {selectedPlans.length === 2 && <Button onClick={startComparison}>Compare Now</Button>}
-              <Button variant="ghost" size="sm" onClick={resetComparison}>
-                Reset
-              </Button>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              {floorPlans.map((plan) => (
+                <motion.div
+                  key={plan.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: plan.id * 0.1 }}
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  onClick={() => handlePlanClick(plan)}
+                >
+                  <div className="aspect-[4/3] bg-gray-50 p-3 sm:p-6">
+                    <Image
+                      src={plan.image || "/placeholder.svg"}
+                      alt={plan.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-contain"
+                      priority={plan.id <= 3}
+                    />
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">{plan.subtitle}</div>
+                    <h3 className="text-lg sm:text-xl font-medium text-gray-900 mb-2">{plan.title}</h3>
+                    <div className="text-sm text-gray-600 mb-4">
+                      {plan.bedrooms} Bedrooms • {plan.bathrooms} Bathrooms • {plan.interiorSqft}
+                    </div>
+                    <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white">
+                      View Details
+                    </Button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </motion.div>
-      )}
-
-      {/* Main Content - Inspired by clean apartment listing design */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Hero Section - Brook inspired */}
-        <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-5xl lg:text-6xl font-extralight text-stone-800 mb-8 leading-[1.1] tracking-tight">
-              Floor Plans
-            </h1>
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-8"></div>
-            <p className="text-xl text-stone-600 leading-relaxed font-light max-w-2xl mx-auto">
-              Discover thoughtfully designed spaces that blend modern sophistication with functional elegance. 
-              Each residence offers premium finishes and spacious layouts.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Main Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          {/* Left Panel - Plan Details */}
-          <div className="lg:col-span-1 order-2 lg:order-1">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentPlan}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="space-y-8 sticky top-32"
+        ) : (
+          // Detail View - Selected floor plan
+          <div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+              <Button 
+                variant="ghost" 
+                onClick={() => setSelectedPlan(null)}
+                className="text-gray-600 hover:text-gray-900"
               >
-                {/* Plan Header */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-amber-600 mb-3 uppercase tracking-[0.2em] font-light">{plan.subtitle}</p>
-                    <h2 className="text-3xl font-extralight text-stone-800 mb-4 leading-tight tracking-tight">{plan.title}</h2>
-                  </div>
-                  {isCompareMode && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Button
-                        variant={selectedPlans.includes(currentPlan) ? ("default" as const) : ("outline" as const)}
-                        size="sm"
-                        onClick={() => togglePlanSelection(currentPlan)}
-                        disabled={!selectedPlans.includes(currentPlan) && selectedPlans.length >= 2}
-                        className="text-sm"
-                      >
-                        {selectedPlans.includes(currentPlan) ? (
-                          <>
-                            <Check className="h-4 w-4 mr-2" />
-                            Selected
-                          </>
-                        ) : (
-                          "Select"
-                        )}
-                      </Button>
-                    </motion.div>
-                  )}
-                </div>
-
-                {/* Specifications with clean layout */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="space-y-6"
-                >
-                  <div className="grid grid-cols-1 gap-6">
-                    <div className="border-l-3 border-amber-500 pl-6 bg-white/50 py-3 rounded-r">
-                      <p className="text-xs text-amber-600 mb-2 uppercase tracking-[0.2em] font-medium">Interior Area</p>
-                      <p className="text-2xl font-light text-stone-800">{plan.interiorSqft}</p>
-                    </div>
-                    <div className="border-l-3 border-amber-500 pl-6 bg-white/50 py-3 rounded-r">
-                      <p className="text-xs text-amber-600 mb-2 uppercase tracking-[0.2em] font-medium">Exterior Area</p>
-                      <p className="text-2xl font-light text-stone-800">{plan.exteriorSqft}</p>
-                    </div>
-                    <div className="border-l-3 border-amber-500 pl-6 bg-white/50 py-3 rounded-r">
-                      <p className="text-xs text-amber-600 mb-2 uppercase tracking-[0.2em] font-medium">Configuration</p>
-                      <p className="text-2xl font-light text-stone-800">
-                        {plan.bedrooms} Bedrooms, {plan.bathrooms} Bathrooms
-                      </p>
-                    </div>
-                    {plan.powderRooms > 0 && (
-                      <div className="border-l-3 border-amber-500 pl-6 bg-white/50 py-3 rounded-r">
-                        <p className="text-xs text-amber-600 mb-2 uppercase tracking-[0.2em] font-medium">Powder Rooms</p>
-                        <p className="text-2xl font-light text-stone-800">{plan.powderRooms}</p>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-
-                {/* Features with elegant presentation */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <h3 className="text-xs text-amber-600 mb-6 uppercase tracking-[0.2em] font-medium">Features</h3>
-                  <ul className="space-y-4">
-                    {plan.features.map((feature, index) => (
-                      <motion.li
-                        key={index}
-                        className="text-stone-700 flex items-start text-sm leading-relaxed font-light"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 + 0.3 }}
-                      >
-                        <span className="text-amber-400 mr-4 mt-1 text-xs">●</span>
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-
-                {/* Action Buttons with minimal design */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="flex flex-col gap-3 pt-8"
-                >
-                  <Button
-                    className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white border-0 py-4 text-sm font-light tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl"
-                    onClick={handleDownload}
-                  >
-                    Download Floor Plan
-                    <Download className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full border-stone-300 hover:border-amber-500 hover:text-amber-600 hover:bg-amber-50 py-4 text-sm font-light tracking-wide transition-all duration-300"
-                  >
-                    Share Plan
-                    <Share2 className="ml-2 h-4 w-4" />
-                  </Button>
-                </motion.div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Right Panel - Large Image Display */}
-          <div className="lg:col-span-2 order-1 lg:order-2">
-            <div className="space-y-8">
-              {/* Main Image Container */}
-              <Card className="overflow-hidden bg-white shadow-lg border border-stone-200/50 rounded-xl">
-                <CardContent className="p-0">
-                  <div className="relative">
-                    {/* Minimal Navigation */}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-amber-50 hover:text-amber-600 rounded-full w-12 h-12 p-0 transition-all duration-300 shadow-lg hover:shadow-xl"
-                      onClick={prevPlan}
-                    >
-                      <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-amber-50 hover:text-amber-600 rounded-full w-12 h-12 p-0 transition-all duration-300 shadow-lg hover:shadow-xl"
-                      onClick={nextPlan}
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </Button>
-
-                    {/* Selection Indicator */}
-                    {isCompareMode && selectedPlans.includes(currentPlan) && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="absolute top-6 left-6 z-10"
-                      >
-                        <Badge className="bg-black text-white">
-                          <Check className="h-3 w-3 mr-1" />
-                          Selected
-                        </Badge>
-                      </motion.div>
-                    )}
-
-                    {/* Fullscreen Button */}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="absolute top-6 right-6 z-10 bg-white/90 hover:bg-white rounded-full w-10 h-10 p-0 transition-all duration-300 shadow-sm"
-                      onClick={toggleFullscreen}
-                    >
-                      <Maximize className="h-4 w-4" />
-                    </Button>
-
-                    {/* Floor Plan Image */}
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentPlan}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative"
-                      >
-                        <div
-                          className={`cursor-pointer bg-white transition-all duration-500 ${
-                            isFullscreen ? "fixed inset-0 z-50 bg-white p-8" : "aspect-[4/3] p-8"
-                          }`}
-                          style={{ touchAction: "none" }}
-                          onClick={() => !isFullscreen && setIsModalOpen(true)}
-                        >
-                          {isFullscreen && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="absolute top-6 right-6 z-10 bg-white/90 hover:bg-white rounded-full w-10 h-10 p-0"
-                              onClick={toggleFullscreen}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          )}
-                          <div
-                            className={`relative w-full h-full ${isFullscreen ? "max-w-5xl mx-auto" : ""}`}
-                            ref={imageRef}
-                            onMouseDown={handleMouseDown}
-                            onMouseMove={handleMouseMove}
-                            onMouseUp={handleMouseUp}
-                            onMouseLeave={handleMouseUp}
-                            style={{ cursor: isZoomed ? "grab" : isFullscreen ? "default" : "pointer" }}
-                          >
-                            {/* Zoom Controls */}
-                            {isFullscreen && (
-                              <div className="absolute top-6 left-6 z-10 flex space-x-2">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="bg-white/90 hover:bg-white rounded-full w-10 h-10 p-0"
-                                  onClick={handleZoomIn}
-                                >
-                                  <Plus className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="bg-white/90 hover:bg-white rounded-full w-10 h-10 p-0"
-                                  onClick={handleZoomOut}
-                                  disabled={!isZoomed}
-                                >
-                                  <Minus className="h-4 w-4" />
-                                </Button>
-                              </div>
-                            )}
-
-                            <div
-                              ref={imageContainerRef}
-                              className="relative w-full h-full flex items-center justify-center"
-                              style={{
-                                cursor: isZoomed ? "grab" : isFullscreen ? "default" : "pointer",
-                              }}
-                              onTouchStart={handleTouchStart}
-                              onTouchMove={handleTouchMove}
-                              onTouchEnd={handleTouchEnd}
-                            >
-                              <div
-                                style={{
-                                  transform: `scale(${zoomLevel}) translate(${dragPosition.x}px, ${dragPosition.y}px)`,
-                                  transition: isDragging ? "none" : "transform 0.3s ease",
-                                }}
-                                className="w-full h-full flex items-center justify-center"
-                              >
-                                <Image
-                                  src={plan.image || "/placeholder.svg"}
-                                  alt={plan.title}
-                                  width={1200}
-                                  height={900}
-                                  className={`max-w-full max-h-full object-contain transition-all duration-500 ${
-                                    isFullscreen ? "max-h-[80vh]" : ""
-                                  }`}
-                                  priority
-                                  style={{
-                                    width: "auto",
-                                    height: "auto",
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-                          <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black">
-                            <div
-                              className="relative w-full h-full overflow-hidden"
-                              ref={imageRef}
-                              onMouseDown={handleMouseDown}
-                              onMouseMove={handleMouseMove}
-                              onMouseUp={handleMouseUp}
-                              onMouseLeave={handleMouseUp}
-                              style={{ cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "default" }}
-                            >
-                              {/* Enhanced Controls */}
-                              <div className="absolute top-6 right-6 z-20 flex flex-col space-y-2">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                                  onClick={() => setIsModalOpen(false)}
-                                >
-                                  <X className="h-4 w-4" />
-                                </Button>
-                              </div>
-
-                              <div className="absolute top-6 left-6 z-20 flex space-y-2 flex-col">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                                  onClick={handleZoomIn}
-                                  disabled={zoomLevel >= 3}
-                                >
-                                  <Plus className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                                  onClick={handleZoomOut}
-                                  disabled={zoomLevel <= 1}
-                                >
-                                  <Minus className="h-4 w-4" />
-                                </Button>
-                                {isZoomed && (
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                                    onClick={() => {
-                                      setZoomLevel(1)
-                                      setIsZoomed(false)
-                                      setDragPosition({ x: 0, y: 0 })
-                                    }}
-                                    title="Reset zoom"
-                                  >
-                                    <Maximize className="h-4 w-4" />
-                                  </Button>
-                                )}
-                              </div>
-
-                              {/* Navigation arrows in modal */}
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/80 hover:bg-black/90 text-white rounded-full w-12 h-12 p-0"
-                                onClick={prevPlan}
-                              >
-                                <ChevronLeft className="h-6 w-6" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/80 hover:bg-black/90 text-white rounded-full w-12 h-12 p-0"
-                                onClick={nextPlan}
-                              >
-                                <ChevronRight className="h-6 w-6" />
-                              </Button>
-
-                              {/* Plan info overlay */}
-                              <div className="absolute bottom-6 right-6 z-20">
-                                <div className="bg-black/80 text-white px-4 py-2 rounded">
-                                  <p className="text-xs opacity-75">{plan.subtitle}</p>
-                                  <p className="text-sm font-medium">{plan.title}</p>
-                                </div>
-                              </div>
-
-                              <div
-                                ref={imageContainerRef}
-                                className="relative w-full h-full flex items-center justify-center"
-                                style={{
-                                  cursor: isZoomed ? (isDragging ? "grabbing" : "grab") : "default",
-                                }}
-                              >
-                                <div
-                                  style={{
-                                    transform: `scale(${zoomLevel}) translate(${dragPosition.x}px, ${dragPosition.y}px)`,
-                                    transition: isDragging ? "none" : "transform 0.3s ease",
-                                  }}
-                                  className="w-full h-full flex items-center justify-center"
-                                >
-                                  <Image
-                                    src={plan.image || "/placeholder.svg"}
-                                    alt={plan.title}
-                                    width={1400}
-                                    height={1000}
-                                    className="max-w-full max-h-full object-contain"
-                                    style={{
-                                      width: "auto",
-                                      height: "auto",
-                                    }}
-                                    priority
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
-                      </motion.div>
-                    </AnimatePresence>
-
-                    {/* Minimalist Plan Indicator */}
-                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                      <div className="flex space-x-2">
-                        {floorPlans.map((_, index) => (
-                          <button
-                            key={index}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                              index === currentPlan ? "bg-amber-500 w-6" : "bg-stone-300 hover:bg-amber-300"
-                            }`}
-                            onClick={() => setCurrentPlan(index)}
-                          >
-                            {isCompareMode && selectedPlans.includes(index) && (
-                              <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                className="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center"
-                              >
-                                <Check className="h-2 w-2 text-white" />
-                              </motion.div>
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Plan Navigation - Clean Desktop Design */}
-              {!isMobile && (
-                <motion.div
-                  className="hidden md:block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm text-gray-500">
-                      {currentPlan + 1} of {floorPlans.length}
-                    </p>
-                    <div className="flex space-x-2">
-                      {floorPlans.map((planItem, index) => (
-                        <div key={planItem.id} className="relative flex items-center space-x-2">
-                          <Button
-                            variant={index === currentPlan ? "default" : "ghost"}
-                            size="sm"
-                            onClick={() => setCurrentPlan(index)}
-                            className={`transition-all duration-300 text-sm font-normal ${
-                              index === currentPlan
-                                ? "bg-black text-white hover:bg-gray-800"
-                                : "text-gray-600 hover:text-black hover:bg-gray-50"
-                            }`}
-                          >
-                            {planItem.title}
-                          </Button>
-                          {isCompareMode && (
-                            <Button
-                              variant={selectedPlans.includes(index) ? "default" : "outline"}
-                              size="sm"
-                              onClick={() => togglePlanSelection(index)}
-                              disabled={!selectedPlans.includes(index) && selectedPlans.length >= 2}
-                              className="w-8 h-8 p-0"
-                            >
-                              {selectedPlans.includes(index) ? <Check className="h-4 w-4" /> : "+"}
-                            </Button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Mobile-specific content with clean design */}
-              {isMobile && (
-                <div className="space-y-6">
-                  {/* Mobile Plan Navigation */}
-                  <div className="bg-white rounded p-4 border border-gray-100">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-500">
-                        {currentPlan + 1} / {floorPlans.length}
-                      </span>
-                      {isCompareMode && (
-                        <Button
-                          variant={selectedPlans.includes(currentPlan) ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => togglePlanSelection(currentPlan)}
-                          disabled={!selectedPlans.includes(currentPlan) && selectedPlans.length >= 2}
-                          className="text-xs px-3 py-1 h-7"
-                        >
-                          {selectedPlans.includes(currentPlan) ? (
-                            <>
-                              <Check className="h-3 w-3 mr-1" />
-                              Selected
-                            </>
-                          ) : (
-                            "Select"
-                          )}
-                        </Button>
-                      )}
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <Button variant="ghost" size="sm" onClick={prevPlan} className="text-gray-600 px-2">
-                        <ChevronLeft className="h-4 w-4 mr-1" />
-                        Previous
-                      </Button>
-
-                      <div className="text-center">
-                        <p className="text-xs text-gray-500 mb-1 uppercase tracking-widest">{plan.subtitle}</p>
-                        <p className="text-sm font-medium text-gray-900">{plan.title}</p>
-                      </div>
-
-                      <Button variant="ghost" size="sm" onClick={nextPlan} className="text-gray-600 px-2">
-                        Next
-                        <ChevronRight className="h-4 w-4 ml-1" />
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Mobile Specifications */}
-                  <div className="bg-white rounded p-4 border border-gray-100">
-                    <h3 className="text-sm font-medium text-gray-900 mb-4">Specifications</h3>
-                    <div className="grid grid-cols-1 gap-4 text-sm">
-                      <div className="border-l-2 border-gray-200 pl-4">
-                        <p className="text-xs text-gray-500 mb-1 uppercase tracking-widest">Interior</p>
-                        <p className="font-medium">{plan.interiorSqft}</p>
-                      </div>
-                      <div className="border-l-2 border-gray-200 pl-4">
-                        <p className="text-xs text-gray-500 mb-1 uppercase tracking-widest">Exterior</p>
-                        <p className="font-medium">{plan.exteriorSqft}</p>
-                      </div>
-                      <div className="border-l-2 border-gray-200 pl-4">
-                        <p className="text-xs text-gray-500 mb-1 uppercase tracking-widest">Configuration</p>
-                        <p className="font-medium">{plan.bedrooms} Bedrooms, {plan.bathrooms} Bathrooms</p>
-                      </div>
-                      {plan.powderRooms > 0 && (
-                        <div className="border-l-2 border-gray-200 pl-4">
-                          <p className="text-xs text-gray-500 mb-1 uppercase tracking-widest">Powder Rooms</p>
-                          <p className="font-medium">{plan.powderRooms}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Mobile Features */}
-                  <div className="bg-white rounded p-4 border border-gray-100">
-                    <h3 className="text-sm font-medium text-gray-900 mb-4">Features</h3>
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, index) => (
-                        <li key={index} className="text-sm text-gray-700 flex items-start">
-                          <span className="text-gray-300 mr-3 mt-1 text-xs">●</span>
-                          <span className="flex-1">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Mobile Action Buttons */}
-                  <div className="space-y-3">
-                    <Button className="w-full bg-black hover:bg-gray-800 text-white py-3" onClick={handleDownload}>
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Floor Plan
-                    </Button>
-                    <Button variant="outline" className="w-full border-gray-300 hover:border-black py-3">
-                      <Share2 className="mr-2 h-4 w-4" />
-                      Share Plan
-                    </Button>
-                  </div>
-                </div>
-              )}
+                ← Back to all plans
+              </Button>
+              <div className="flex space-x-2">
+                <Button variant="outline" size="sm" className="text-xs sm:text-sm">
+                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Download</span>
+                </Button>
+                <Button variant="outline" size="sm" className="text-xs sm:text-sm">
+                  <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Share</span>
+                </Button>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Comparison Dialog - Maintained with clean styling */}
-      <Dialog open={isCompareDialogOpen} onOpenChange={setIsCompareDialogOpen}>
-        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0">
-          {comparisonData && (
-            <div className="h-full flex flex-col" ref={comparisonRef}>
-              {/* Header */}
-              <div className="p-6 border-b border-gray-200 bg-white sticky top-0 z-10">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-light text-gray-900">Floor Plan Comparison</h2>
-                  <Button variant="ghost" size="sm" onClick={() => setIsCompareDialogOpen(false)}>
-                    <X className="h-4 w-4" />
-                  </Button>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-12 sm:mb-16">
+              {/* Floor Plan Image */}
+              <div className="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8">
+                <div className="aspect-[4/3] flex items-center justify-center">
+                  <Image
+                    src={selectedPlan.image || "/placeholder.svg"}
+                    alt={selectedPlan.title}
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
 
-              {/* Comparison Content */}
-              <div className="flex-1 overflow-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-                  {/* Plan 1 */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="p-8 border-r border-gray-200"
-                  >
-                    <div className="space-y-8">
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1 uppercase tracking-widest">{comparisonData.plan1.subtitle}</p>
-                        <h3 className="text-2xl font-light text-gray-900">{comparisonData.plan1.title}</h3>
-                      </div>
+              {/* Details */}
+              <div className="space-y-6 sm:space-y-8">
+                <div>
+                  <div className="text-sm text-gray-500 uppercase tracking-wide mb-2">{selectedPlan.subtitle}</div>
+                  <h1 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">{selectedPlan.title}</h1>
 
-                      <div className="bg-gray-50 rounded overflow-hidden p-6">
-                        <div className="w-full h-80 flex items-center justify-center">
-                          <Image
-                            src={comparisonData.plan1.image || "/placeholder.svg"}
-                            alt={comparisonData.plan1.title}
-                            width={800}
-                            height={600}
-                            className="max-w-full max-h-full object-contain"
-                            style={{
-                              width: "auto",
-                              height: "auto",
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div className="grid grid-cols-1 gap-4 text-sm">
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Interior</p>
-                            <p className="font-medium text-lg">{comparisonData.plan1.interiorSqft}</p>
-                          </div>
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Exterior</p>
-                            <p className="font-medium text-lg">{comparisonData.plan1.exteriorSqft}</p>
-                          </div>
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Configuration</p>
-                            <p className="font-medium text-lg">{comparisonData.plan1.bedrooms} BR, {comparisonData.plan1.bathrooms} BA</p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <p className="text-sm text-gray-500 mb-4 uppercase tracking-widest">Features</p>
-                          <ul className="space-y-3 text-sm">
-                            {comparisonData.plan1.features.map((feature, index) => (
-                              <motion.li
-                                key={index}
-                                className="flex items-start"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                              >
-                                <span className="text-gray-300 mr-3 mt-1 text-xs">●</span>
-                                {feature}
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6">
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">Interior</div>
+                      <div className="text-lg font-medium">{selectedPlan.interiorSqft}</div>
                     </div>
-                  </motion.div>
-
-                  {/* Plan 2 */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="p-8"
-                  >
-                    <div className="space-y-8">
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1 uppercase tracking-widest">{comparisonData.plan2.subtitle}</p>
-                        <h3 className="text-2xl font-light text-gray-900">{comparisonData.plan2.title}</h3>
-                      </div>
-
-                      <div className="bg-gray-50 rounded overflow-hidden p-6">
-                        <div className="w-full h-80 flex items-center justify-center">
-                          <Image
-                            src={comparisonData.plan2.image || "/placeholder.svg"}
-                            alt={comparisonData.plan2.title}
-                            width={800}
-                            height={600}
-                            className="max-w-full max-h-full object-contain"
-                            style={{
-                              width: "auto",
-                              height: "auto",
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div className="grid grid-cols-1 gap-4 text-sm">
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Interior</p>
-                            <p className="font-medium text-lg">{comparisonData.plan2.interiorSqft}</p>
-                          </div>
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Exterior</p>
-                            <p className="font-medium text-lg">{comparisonData.plan2.exteriorSqft}</p>
-                          </div>
-                          <div className="border-l-2 border-gray-200 pl-4">
-                            <p className="text-gray-500 mb-1 uppercase tracking-widest">Configuration</p>
-                            <p className="font-medium text-lg">{comparisonData.plan2.bedrooms} BR, {comparisonData.plan2.bathrooms} BA</p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <p className="text-sm text-gray-500 mb-4 uppercase tracking-widest">Features</p>
-                          <ul className="space-y-3 text-sm">
-                            {comparisonData.plan2.features.map((feature, index) => (
-                              <motion.li
-                                key={index}
-                                className="flex items-start"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                              >
-                                <span className="text-gray-300 mr-3 mt-1 text-xs">●</span>
-                                {feature}
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">Exterior</div>
+                      <div className="text-lg font-medium">{selectedPlan.exteriorSqft}</div>
                     </div>
-                  </motion.div>
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">Bedrooms</div>
+                      <div className="text-lg font-medium">{selectedPlan.bedrooms}</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">Bathrooms</div>
+                      <div className="text-lg font-medium">{selectedPlan.bathrooms}</div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Features */}
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Features</h3>
+                  <ul className="space-y-2">
+                    {selectedPlan.features.map((feature: string, index: number) => (
+                      <li key={index} className="text-gray-600 flex items-start">
+                        <span className="w-1 h-1 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Interior Images Slideshow Section */}
+            {selectedPlan.interiorImages && selectedPlan.interiorImages.length > 0 && (
+              <div className="border-t border-gray-100 pt-8 sm:pt-12 lg:pt-16">
+                <div className="text-center mb-8 sm:mb-12">
+                  <h2 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">A Closer Look</h2>
+                  <p className="text-base sm:text-lg text-gray-600 px-4">Explore the interior spaces and design details</p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start lg:items-center">
+                  {/* Slideshow */}
+                  <div className="relative order-1 lg:order-1">
+                    <div className="aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden relative">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentImageIndex}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="w-full h-full cursor-pointer"
+                          onClick={() => handleImageClick(selectedPlan.interiorImages[currentImageIndex])}
+                        >
+                          <Image
+                            src={selectedPlan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
+                            alt={selectedPlan.interiorImages[currentImageIndex].name}
+                            width={600}
+                            height={450}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+
+                      {/* Navigation Arrows */}
+                      {selectedPlan.interiorImages.length > 1 && (
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full w-8 h-8 sm:w-10 sm:h-10 p-0 shadow-lg"
+                            onClick={prevImage}
+                          >
+                            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full w-8 h-8 sm:w-10 sm:h-10 p-0 shadow-lg"
+                            onClick={nextImage}
+                          >
+                            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                          </Button>
+                        </>
+                      )}
+
+                      {/* Image Counter */}
+                      <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-black/70 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm">
+                        {currentImageIndex + 1} / {selectedPlan.interiorImages.length}
+                      </div>
+                    </div>
+
+                    {/* Dots Navigation */}
+                    {selectedPlan.interiorImages.length > 1 && (
+                      <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
+                        {selectedPlan.interiorImages.map((_: any, index: number) => (
+                          <button
+                            key={index}
+                            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                              index === currentImageIndex ? "bg-gray-900" : "bg-gray-300 hover:bg-gray-400"
+                            }`}
+                            onClick={() => setCurrentImageIndex(index)}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Current Image Info */}
+                  <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-light text-gray-900 mb-2">
+                        {selectedPlan.interiorImages[currentImageIndex].name}
+                      </h3>
+                      <p className="text-sm sm:text-base text-gray-600">
+                        Experience the thoughtfully designed interior spaces that blend comfort with modern elegance.
+                      </p>
+                    </div>
+
+                    {/* Room List */}
+                    <div className="space-y-2 sm:space-y-3">
+                      {selectedPlan.interiorImages.map((room: any, index: number) => (
+                        <Button
+                          key={room.id}
+                          variant={index === currentImageIndex ? "default" : "outline"}
+                          className={`w-full justify-start text-left text-sm sm:text-base py-2 sm:py-3 ${
+                            index === currentImageIndex 
+                              ? "bg-gray-900 text-white" 
+                              : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                          }`}
+                          onClick={() => setCurrentImageIndex(index)}
+                        >
+                          {room.name}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </main>
+
+      {/* Full Screen Image Dialog */}
+      <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
+        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black">
+          <div className="sr-only">
+            <h2>Full Screen Image View</h2>
+            <p>View the selected interior image in full screen</p>
+          </div>
+          {selectedImage && (
+            <div className="relative w-full h-full overflow-hidden">
+              <div className="absolute top-6 right-6 z-20">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
+                  onClick={() => setIsImageDialogOpen(false)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+
+              <div className="absolute top-6 left-6 z-20">
+                <div className="bg-black/80 text-white px-4 py-2 rounded">
+                  <p className="text-sm font-medium">{selectedImage.name}</p>
+                </div>
+              </div>
+
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={selectedImage.image || "/placeholder.svg"}
+                  alt={selectedImage.name}
+                  width={1400}
+                  height={1000}
+                  className="max-w-full max-h-full object-contain"
+                  priority
+                />
               </div>
             </div>
           )}
