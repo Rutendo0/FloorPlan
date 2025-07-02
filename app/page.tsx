@@ -103,7 +103,7 @@ export default function HomePage() {
                         </p>
                         
                         <div className="mt-6">
-                          <span className="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">
+                          <span className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md group-hover:bg-gray-800 transition-colors duration-300">
                             Explore Plans →
                           </span>
                         </div>
