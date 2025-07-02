@@ -125,27 +125,27 @@ export default function DoubleStoreyFloorplansPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-lg border-b border-stone-200/50 px-4 sm:px-6 py-6 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-4">
-            <ArrowLeft className="h-5 w-5 text-amber-600" />
+          <Link href="/" className="flex items-center space-x-3">
+            <ArrowLeft className="h-5 w-5 text-gray-600" />
             <div>
-              <h1 className="text-lg sm:text-xl font-light text-stone-900 tracking-wide">
+              <h1 className="text-xl font-normal text-gray-900 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-stone-600 font-light tracking-wider uppercase">
+              <p className="text-xs text-gray-500 uppercase">
                 Double Storey Floor Plans
               </p>
             </div>
           </Link>
-          <div className="flex space-x-2">
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
+          <div className="flex space-x-3">
+            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
+            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
               <Share2 className="h-4 w-4 mr-2" />
               Share
             </Button>

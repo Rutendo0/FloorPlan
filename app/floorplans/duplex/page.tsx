@@ -125,27 +125,27 @@ export default function DuplexFloorplansPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-lg border-b border-stone-200/50 px-4 sm:px-6 py-6 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-4">
-            <ArrowLeft className="h-5 w-5 text-amber-600" />
+          <Link href="/" className="flex items-center space-x-3">
+            <ArrowLeft className="h-5 w-5 text-gray-600" />
             <div>
-              <h1 className="text-lg sm:text-xl font-light text-stone-900 tracking-wide">
+              <h1 className="text-xl font-normal text-gray-900 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-stone-600 font-light tracking-wider uppercase">
+              <p className="text-xs text-gray-500 uppercase">
                 Duplex Floor Plans
               </p>
             </div>
           </Link>
-          <div className="flex space-x-2">
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
+          <div className="flex space-x-3">
+            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
+            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
               <Share2 className="h-4 w-4 mr-2" />
               Share
             </Button>
@@ -154,14 +154,14 @@ export default function DuplexFloorplansPage() {
       </header>
 
       {/* Navigation Dots - Fixed Position */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
+      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-3">
         {duplexPlans.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
               index === currentPlanIndex 
-                ? "bg-amber-600 shadow-lg shadow-amber-600/50" 
-                : "bg-amber-400/30 hover:bg-amber-400/50"
+                ? "bg-gray-800" 
+                : "bg-gray-300 hover:bg-gray-400"
             }`}
             onClick={() => scrollToPlan(index)}
           />
@@ -179,59 +179,50 @@ export default function DuplexFloorplansPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                 {/* Plan Details - Left Side */}
-                <div className="lg:col-span-5 space-y-8">
+                <div className="lg:col-span-5 space-y-12">
                   <div>
-                    <div className="text-sm text-amber-600 uppercase tracking-wider mb-4 font-medium">
-                      {plan.subtitle} • Plan {plan.id}
+                    <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">
+                      {plan.subtitle}
                     </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">
+                    <h1 className="text-3xl lg:text-4xl font-normal text-gray-900 mb-12 leading-tight">
                       {plan.title}
                     </h1>
 
                     {/* Specifications */}
-                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
-                      <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
-                        Specifications
-                      </h3>
-                      <div className="space-y-6">
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Interior Space</span>
-                          <span className="text-stone-900 font-medium">{plan.interiorSqft}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Exterior Space</span>
-                          <span className="text-stone-900 font-medium">{plan.exteriorSqft}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Exposure</span>
-                          <span className="text-stone-900 font-medium">N.E.S.W</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Bedrooms</span>
-                          <span className="text-stone-900 font-medium">{plan.bedrooms}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Bathrooms</span>
-                          <span className="text-stone-900 font-medium">{plan.bathrooms}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4">
-                          <span className="text-stone-600 font-light">Powder Rooms</span>
-                          <span className="text-stone-900 font-medium">{plan.powderRooms || 0}</span>
-                        </div>
+                    <div className="space-y-8">
+                      <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+                        <span className="text-gray-600 text-sm uppercase tracking-wide">Interior Sq Ft / Sq M</span>
+                        <span className="text-gray-900 font-medium">{plan.interiorSqft}</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+                        <span className="text-gray-600 text-sm uppercase tracking-wide">Exterior Sq Ft / Sq M</span>
+                        <span className="text-gray-900 font-medium">{plan.exteriorSqft}</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+                        <span className="text-gray-600 text-sm uppercase tracking-wide">Exposure</span>
+                        <span className="text-gray-900 font-medium">N.E.S.W</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+                        <span className="text-gray-600 text-sm uppercase tracking-wide">Bedroom/Bathroom</span>
+                        <span className="text-gray-900 font-medium">{plan.bedrooms}/{plan.bathrooms}</span>
+                      </div>
+                      <div className="flex justify-between items-center pb-3">
+                        <span className="text-gray-600 text-sm uppercase tracking-wide">Powder Room</span>
+                        <span className="text-gray-900 font-medium">{plan.powderRooms || 0}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Features */}
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
-                      Premium Features
+                    <h3 className="text-lg font-medium text-gray-900 mb-6 uppercase tracking-wide">
+                      Features
                     </h3>
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="space-y-2">
                       {plan.features.map((feature: string, index: number) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
-                          <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
+                        <div key={index} className="flex items-start gap-3">
+                          <div className="w-1 h-1 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -239,16 +230,16 @@ export default function DuplexFloorplansPage() {
                 </div>
 
                 {/* Floor Plan Image & Interior Slideshow - Right Side */}
-                <div className="lg:col-span-7 space-y-12">
+                <div className="lg:col-span-7 space-y-16">
                   {/* Floor Plan */}
-                  <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
-                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
+                  <div className="bg-gray-50 p-8">
+                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-white">
                       <Image
                         src={plan.image || "/placeholder.svg"}
                         alt={plan.title}
                         width={800}
                         height={600}
-                        className="w-full h-full object-contain p-8"
+                        className="w-full h-full object-contain p-4"
                         priority={planIndex <= 1}
                       />
                     </div>
@@ -256,23 +247,23 @@ export default function DuplexFloorplansPage() {
 
                   {/* Interior Images Slideshow */}
                   {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
-                    <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
-                      <div className="text-center mb-8">
-                        <h3 className="text-2xl font-light text-stone-900 mb-4">Interior Showcase</h3>
-                        <p className="text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
+                    <div className="space-y-8">
+                      <div className="text-center">
+                        <h3 className="text-xl font-medium text-gray-900 mb-2">Interior Showcase</h3>
+                        <p className="text-gray-600 text-sm">Experience the thoughtfully designed interior spaces</p>
                       </div>
 
                       <div className="space-y-8">
                         {/* Slideshow */}
                         <div className="relative">
-                          <div className="aspect-[4/3] bg-stone-900/50 rounded-xl overflow-hidden relative">
+                          <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
                             <AnimatePresence mode="wait">
                               <motion.div
                                 key={currentImageIndex}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
+                                transition={{ duration: 0.3 }}
                                 className="w-full h-full cursor-pointer"
                                 onClick={() => handleImageClick(plan.interiorImages[currentImageIndex])}
                               >
@@ -292,36 +283,36 @@ export default function DuplexFloorplansPage() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-stone-900/90 hover:bg-stone-800 text-amber-400 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-amber-600/20"
+                                  className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 p-0 shadow-sm"
                                   onClick={prevImage}
                                 >
-                                  <ChevronLeft className="h-5 w-5" />
+                                  <ChevronLeft className="h-4 w-4" />
                                 </Button>
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-stone-900/90 hover:bg-stone-800 text-amber-400 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-amber-600/20"
+                                  className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 p-0 shadow-sm"
                                   onClick={nextImage}
                                 >
-                                  <ChevronRight className="h-5 w-5" />
+                                  <ChevronRight className="h-4 w-4" />
                                 </Button>
                               </>
                             )}
 
                             {/* Image Counter */}
-                            <div className="absolute bottom-4 left-4 bg-stone-900/80 text-amber-400 px-4 py-2 rounded-full text-sm backdrop-blur-sm border border-amber-600/20">
+                            <div className="absolute bottom-3 left-3 bg-white/90 text-gray-800 px-3 py-1 text-xs">
                               {currentImageIndex + 1} of {plan.interiorImages.length}
                             </div>
                           </div>
 
                           {/* Dots Navigation */}
                           {plan.interiorImages.length > 1 && (
-                            <div className="flex justify-center mt-6 space-x-3">
+                            <div className="flex justify-center mt-4 space-x-2">
                               {plan.interiorImages.map((_: any, index: number) => (
                                 <button
                                   key={index}
-                                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                    index === currentImageIndex ? "bg-amber-600" : "bg-amber-400/30 hover:bg-amber-400/50"
+                                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                                    index === currentImageIndex ? "bg-gray-800" : "bg-gray-300 hover:bg-gray-400"
                                   }`}
                                   onClick={() => setCurrentImageIndex(index)}
                                 />
@@ -331,25 +322,25 @@ export default function DuplexFloorplansPage() {
                         </div>
 
                         {/* Current Image Info */}
-                        <div className="text-center">
-                          <h4 className="text-xl font-light text-amber-100 mb-2">
+                        <div className="text-center mt-6">
+                          <h4 className="text-lg font-medium text-gray-900 mb-1">
                             {plan.interiorImages[currentImageIndex].name}
                           </h4>
-                          <p className="text-amber-200/70 font-light">
-                            Thoughtfully designed spaces that blend comfort with luxury
+                          <p className="text-gray-600 text-sm">
+                            Thoughtfully designed spaces
                           </p>
                         </div>
 
                         {/* Room List */}
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-2 mt-8">
                           {plan.interiorImages.map((room: any, index: number) => (
                             <Button
                               key={room.id}
                               variant={index === currentImageIndex ? "default" : "ghost"}
-                              className={`justify-start text-left py-3 px-4 text-sm rounded-xl transition-all duration-300 ${
+                              className={`justify-start text-left py-2 px-3 text-xs transition-all duration-200 ${
                                 index === currentImageIndex 
-                                  ? "bg-amber-600 text-white shadow-lg" 
-                                  : "text-amber-200/80 hover:bg-stone-700/50 hover:text-amber-100 border border-amber-600/10"
+                                  ? "bg-gray-800 text-white" 
+                                  : "text-gray-600 hover:bg-gray-100 border border-gray-200"
                               }`}
                               onClick={() => setCurrentImageIndex(index)}
                             >
