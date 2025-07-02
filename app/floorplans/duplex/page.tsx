@@ -122,27 +122,27 @@ export default function DuplexFloorplansPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-900 via-amber-950 to-stone-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
       {/* Header */}
-      <header className="bg-stone-900/90 backdrop-blur-lg border-b border-amber-600/20 px-4 sm:px-6 py-6 sticky top-0 z-50">
+      <header className="bg-white/90 backdrop-blur-lg border-b border-stone-200/50 px-4 sm:px-6 py-6 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-4">
-            <ArrowLeft className="h-5 w-5 text-amber-400" />
+            <ArrowLeft className="h-5 w-5 text-amber-600" />
             <div>
-              <h1 className="text-lg sm:text-xl font-light text-amber-100 tracking-wide">
+              <h1 className="text-lg sm:text-xl font-light text-stone-900 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-amber-400/70 font-light tracking-wider uppercase">
+              <p className="text-xs text-stone-600 font-light tracking-wider uppercase">
                 Duplex Floor Plans
               </p>
             </div>
           </Link>
           <div className="flex space-x-2">
-            <Button variant="outline" size="sm" className="border-amber-600/30 text-amber-400 hover:bg-amber-600/10 font-light">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" size="sm" className="border-amber-600/30 text-amber-400 hover:bg-amber-600/10 font-light">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-amber-600/10 hover:border-amber-600 font-light">
               <Share2 className="h-4 w-4 mr-2" />
               Share
             </Button>
@@ -178,42 +178,42 @@ export default function DuplexFloorplansPage() {
                 {/* Plan Details - Left Side */}
                 <div className="lg:col-span-5 space-y-8">
                   <div>
-                    <div className="text-sm text-amber-400 uppercase tracking-wider mb-4 font-medium">
+                    <div className="text-sm text-amber-600 uppercase tracking-wider mb-4 font-medium">
                       {plan.subtitle} • Plan {plan.id}
                     </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-amber-100 mb-8 tracking-tight leading-tight">
+                    <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">
                       {plan.title}
                     </h1>
 
                     {/* Specifications */}
-                    <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
-                      <h3 className="text-lg font-medium text-amber-100 mb-6 uppercase tracking-wider">
+                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+                      <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
                         Specifications
                       </h3>
                       <div className="space-y-6">
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Interior Space</span>
-                          <span className="text-amber-100 font-medium">{plan.interiorSqft}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Interior Space</span>
+                          <span className="text-stone-900 font-medium">{plan.interiorSqft}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Exterior Space</span>
-                          <span className="text-amber-100 font-medium">{plan.exteriorSqft}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Exterior Space</span>
+                          <span className="text-stone-900 font-medium">{plan.exteriorSqft}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Exposure</span>
-                          <span className="text-amber-100 font-medium">N.E.S.W</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Exposure</span>
+                          <span className="text-stone-900 font-medium">N.E.S.W</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Bedrooms</span>
-                          <span className="text-amber-100 font-medium">{plan.bedrooms}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Bedrooms</span>
+                          <span className="text-stone-900 font-medium">{plan.bedrooms}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Bathrooms</span>
-                          <span className="text-amber-100 font-medium">{plan.bathrooms}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Bathrooms</span>
+                          <span className="text-stone-900 font-medium">{plan.bathrooms}</span>
                         </div>
                         <div className="flex justify-between items-center py-4">
-                          <span className="text-amber-200/80 font-light">Powder Rooms</span>
-                          <span className="text-amber-100 font-medium">{plan.powderRooms || 0}</span>
+                          <span className="text-stone-600 font-light">Powder Rooms</span>
+                          <span className="text-stone-900 font-medium">{plan.powderRooms || 0}</span>
                         </div>
                       </div>
                     </div>
@@ -221,14 +221,14 @@ export default function DuplexFloorplansPage() {
 
                   {/* Features */}
                   <div>
-                    <h3 className="text-lg font-medium text-amber-100 mb-8 uppercase tracking-wider">
+                    <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
                       Premium Features
                     </h3>
                     <div className="grid grid-cols-1 gap-4">
                       {plan.features.map((feature: string, index: number) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-stone-800/30 rounded-xl border border-amber-600/10">
+                        <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
                           <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-amber-200/90 font-light leading-relaxed">{feature}</span>
+                          <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -238,8 +238,8 @@ export default function DuplexFloorplansPage() {
                 {/* Floor Plan Image & Interior Slideshow - Right Side */}
                 <div className="lg:col-span-7 space-y-12">
                   {/* Floor Plan */}
-                  <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
-                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-900/50 rounded-xl">
+                  <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
+                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
                       <Image
                         src={plan.image || "/placeholder.svg"}
                         alt={plan.title}
@@ -253,10 +253,10 @@ export default function DuplexFloorplansPage() {
 
                   {/* Interior Images Slideshow */}
                   {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
-                    <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
+                    <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
                       <div className="text-center mb-8">
-                        <h3 className="text-2xl font-light text-amber-100 mb-4">Interior Showcase</h3>
-                        <p className="text-amber-200/70 font-light">Experience the thoughtfully designed interior spaces</p>
+                        <h3 className="text-2xl font-light text-stone-900 mb-4">Interior Showcase</h3>
+                        <p className="text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
                       </div>
 
                       <div className="space-y-8">
