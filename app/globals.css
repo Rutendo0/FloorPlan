@@ -70,6 +70,18 @@ h6 {
   letter-spacing: -0.025em;
 }
 
+/* Custom Ashumi branding font */
+.ashumi-brand {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
 /* Luxury animation classes */
 .hover-lift {
   transition: transform 0.3s ease;
