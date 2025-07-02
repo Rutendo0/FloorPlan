@@ -1,9 +1,10 @@
+
 "use client"
 
 import type React from "react"
 import { useState } from "react"
 import Image from "next/image"
-import { X, Download, Share2, ChevronLeft, ChevronRight } from "lucide-react"
+import { X, Download, Share2, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { motion, AnimatePresence } from "framer-motion"
@@ -121,7 +122,7 @@ const floorPlans = [
       { id: 4, name: "Dining Room", image: "/images/plan3.png" }
     ]
   },
-{
+  {
     id: 7,
     title: "4-Bedroom Double Storey Semi-Detached Duplex",
     subtitle: "Ground Floor",
@@ -132,7 +133,7 @@ const floorPlans = [
     bedrooms: 4,
     bathrooms: 2,
     powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen",  "Dining",  "Parking Space"],
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
       { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
       { id: 2, name: "Living Room", image: "/images/plan2.png" },
@@ -151,15 +152,14 @@ const floorPlans = [
     bedrooms: 4,
     bathrooms: 2,
     powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen",  "Dining",  "Parking Space"],
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
       { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
       { id: 2, name: "Living Room", image: "/images/plan2.png" },
       { id: 3, name: "Kitchen", image: "/images/plan3.png" },
       { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
     ]
-  },
-
+  }
 ]
 
 export default function FloorplansPage() {
@@ -195,264 +195,366 @@ export default function FloorplansPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-100 px-4 sm:px-6 py-6 sticky top-0 z-40">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
+      {/* Elegant Header */}
+      <header className="bg-white/80 backdrop-blur-lg border-b border-stone-200/50 px-6 py-8 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="ashumi-brand text-gray-900">
-            <a href="/" className="hover:text-gray-600 transition-colors">
-              ASHUMI
-            </a>
-          </h1>
-          <div className="text-xs text-gray-400 uppercase tracking-[0.3em] font-light">Floor Plans</div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-3xl font-light text-stone-900 tracking-[0.2em]">
+              <a href="/" className="hover:text-amber-600 transition-all duration-300">
+                ASHUMI ESTATES
+              </a>
+            </h1>
+            <p className="text-xs text-stone-500 tracking-[0.3em] uppercase mt-1 font-light">
+              Luxury Redefined
+            </p>
+          </motion.div>
+          <div className="text-sm text-stone-600 uppercase tracking-[0.25em] font-light">
+            Floor Plans Collection
+          </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 lg:py-12">
-        {!selectedPlan ? (
-          // Grid View - Select a floor plan
-          <div>
-            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-wide">Choose Your Floor Plan</h1>
-              <p className="text-lg sm:text-xl text-gray-600 px-4 font-light">Select a floor plan to explore room details and interior designs</p>
+      {!selectedPlan ? (
+        <>
+          {/* Hero Section */}
+          <section className="relative py-24 lg:py-32 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-transparent to-stone-100/20"></div>
+            <div className="max-w-7xl mx-auto px-6 relative">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <h1 className="text-5xl lg:text-7xl font-extralight text-stone-900 mb-8 tracking-tight leading-tight">
+                  Architectural
+                  <span className="block text-amber-600 italic font-light">Excellence</span>
+                </h1>
+                <p className="text-xl lg:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed font-light">
+                  Discover our curated collection of luxury floor plans, where every detail reflects
+                  our commitment to sophisticated living and timeless design.
+                </p>
+                <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  <div className="flex items-center gap-3 text-stone-600">
+                    <div className="w-12 h-px bg-amber-600"></div>
+                    <span className="text-sm uppercase tracking-wider font-light">Premium Designs</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-stone-600">
+                    <div className="w-12 h-px bg-amber-600"></div>
+                    <span className="text-sm uppercase tracking-wider font-light">Luxury Living</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
+          </section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {floorPlans.map((plan) => (
+          {/* Floor Plans Collection */}
+          <section className="max-w-7xl mx-auto px-6 pb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-4xl lg:text-5xl font-light text-stone-900 mb-6 tracking-wide">
+                Our Collection
+              </h2>
+              <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                Each plan represents our dedication to creating spaces that inspire and elevate daily life
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
+              {floorPlans.map((plan, index) => (
                 <motion.div
                   key={plan.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: plan.id * 0.1 }}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group cursor-pointer"
                   onClick={() => handlePlanClick(plan)}
                 >
-                  <div className="aspect-[4/3] bg-gray-50 p-3 sm:p-6">
-                    <Image
-                      src={plan.image || "/placeholder.svg"}
-                      alt={plan.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-contain"
-                      priority={plan.id <= 3}
-                    />
-                  </div>
-                  <div className="p-6 sm:p-8">
-                    <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-2 font-light">FLOOR {plan.id}</div>
-                    <h3 className="text-xl sm:text-2xl font-light text-gray-900 mb-3 tracking-wide">{plan.title}</h3>
-                    <div className="text-sm text-gray-500 mb-6 leading-relaxed">
-                      {plan.bedrooms} Bedrooms • {plan.bathrooms} Bathrooms • {plan.interiorSqft}
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                    {/* Image Container */}
+                    <div className="relative aspect-[4/3] bg-stone-50 overflow-hidden">
+                      <Image
+                        src={plan.image || "/placeholder.svg"}
+                        alt={plan.title}
+                        width={500}
+                        height={375}
+                        className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700"
+                        priority={index < 6}
+                      />
+                      <div className="absolute top-4 left-4">
+                        <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                          <span className="text-xs font-medium text-stone-700 uppercase tracking-wider">
+                            Plan {plan.id}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 text-sm font-light tracking-wide">
-                      VIEW DETAILS
-                    </Button>
+
+                    {/* Content */}
+                    <div className="p-8">
+                      <div className="mb-4">
+                        <h3 className="text-2xl font-light text-stone-900 mb-2 group-hover:text-amber-600 transition-colors duration-300">
+                          {plan.title}
+                        </h3>
+                        <p className="text-stone-500 text-sm uppercase tracking-wider font-light">
+                          {plan.subtitle}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-4 mb-6 text-center">
+                        <div>
+                          <div className="text-2xl font-light text-stone-900">{plan.bedrooms}</div>
+                          <div className="text-xs text-stone-500 uppercase tracking-wider">Bedrooms</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-light text-stone-900">{plan.bathrooms}</div>
+                          <div className="text-xs text-stone-500 uppercase tracking-wider">Bathrooms</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-light text-stone-900">{plan.interiorSqft.split(' ')[0]}</div>
+                          <div className="text-xs text-stone-500 uppercase tracking-wider">Sq M</div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-light text-stone-900">{plan.interiorSqft}</span>
+                        <div className="flex items-center text-amber-600 group-hover:translate-x-2 transition-transform duration-300">
+                          <span className="text-sm uppercase tracking-wider font-medium mr-2">Explore</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </div>
-        ) : (
-          // Detail View - Selected floor plan
-          <div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
-              <Button 
-                variant="ghost" 
-                onClick={() => setSelectedPlan(null)}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                ← Back to all plans
+          </section>
+        </>
+      ) : (
+        // Detail View - Selected floor plan
+        <main className="max-w-7xl mx-auto px-6 py-12">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-12">
+            <Button 
+              variant="ghost" 
+              onClick={() => setSelectedPlan(null)}
+              className="text-stone-600 hover:text-stone-900 hover:bg-stone-100 flex items-center gap-2 px-0"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Back to Collection
+            </Button>
+            <div className="flex gap-3">
+              <Button variant="outline" size="sm" className="border-stone-300 hover:border-amber-600 hover:text-amber-600">
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
               </Button>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm" className="text-xs sm:text-sm">
-                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Download</span>
-                </Button>
-                <Button variant="outline" size="sm" className="text-xs sm:text-sm">
-                  <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Share</span>
-                </Button>
-              </div>
+              <Button variant="outline" size="sm" className="border-stone-300 hover:border-amber-600 hover:text-amber-600">
+                <Share2 className="h-4 w-4 mr-2" />
+                Share Plan
+              </Button>
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12 sm:mb-16">
-              {/* Details - Left Side */}
-              <div className="lg:col-span-5 space-y-8 order-2 lg:order-1">
-                <div>
-                  <div className="text-xs text-gray-400 uppercase tracking-[0.3em] mb-3 font-light">FLOOR {selectedPlan.id}</div>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-800 mb-8 tracking-wide leading-tight">
-                    {selectedPlan.title}
-                  </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+            {/* Details - Left Side */}
+            <div className="lg:col-span-5 space-y-12 order-2 lg:order-1">
+              <div>
+                <div className="text-sm text-amber-600 uppercase tracking-wider mb-4 font-medium">
+                  {selectedPlan.subtitle} • Plan {selectedPlan.id}
+                </div>
+                <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">
+                  {selectedPlan.title}
+                </h1>
 
-                  {/* Specifications */}
+                {/* Specifications */}
+                <div className="bg-stone-50 rounded-2xl p-8">
+                  <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
+                    Specifications
+                  </h3>
                   <div className="space-y-6">
-                    <div className="grid grid-cols-1 gap-4">
-                      <div className="flex justify-between py-3 border-b border-gray-100">
-                        <span className="text-sm text-gray-500 uppercase tracking-wider">Interior Sq Ft / Sq M</span>
-                        <span className="text-sm font-medium">{selectedPlan.interiorSqft}</span>
-                      </div>
-                      <div className="flex justify-between py-3 border-b border-gray-100">
-                        <span className="text-sm text-gray-500 uppercase tracking-wider">Exterior Sq Ft / Sq M</span>
-                        <span className="text-sm font-medium">{selectedPlan.exteriorSqft}</span>
-                      </div>
-                      <div className="flex justify-between py-3 border-b border-gray-100">
-                        <span className="text-sm text-gray-500 uppercase tracking-wider">Exposure</span>
-                        <span className="text-sm font-medium">N.E.S.W</span>
-                      </div>
-                      <div className="flex justify-between py-3 border-b border-gray-100">
-                        <span className="text-sm text-gray-500 uppercase tracking-wider">Bedroom/Bathroom</span>
-                        <span className="text-sm font-medium">{selectedPlan.bedrooms}/{selectedPlan.bathrooms}</span>
-                      </div>
-                      <div className="flex justify-between py-3 border-b border-gray-100">
-                        <span className="text-sm text-gray-500 uppercase tracking-wider">Powder Room</span>
-                        <span className="text-sm font-medium">{selectedPlan.powderRooms || 0}</span>
-                      </div>
+                    <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                      <span className="text-stone-600 font-light">Interior Space</span>
+                      <span className="text-stone-900 font-medium">{selectedPlan.interiorSqft}</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                      <span className="text-stone-600 font-light">Exterior Space</span>
+                      <span className="text-stone-900 font-medium">{selectedPlan.exteriorSqft}</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                      <span className="text-stone-600 font-light">Exposure</span>
+                      <span className="text-stone-900 font-medium">N.E.S.W</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                      <span className="text-stone-600 font-light">Bedrooms</span>
+                      <span className="text-stone-900 font-medium">{selectedPlan.bedrooms}</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                      <span className="text-stone-600 font-light">Bathrooms</span>
+                      <span className="text-stone-900 font-medium">{selectedPlan.bathrooms}</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4">
+                      <span className="text-stone-600 font-light">Powder Rooms</span>
+                      <span className="text-stone-900 font-medium">{selectedPlan.powderRooms || 0}</span>
                     </div>
                   </div>
                 </div>
-
-                {/* Features */}
-                <div>
-                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-6">Features</h3>
-                  <ul className="space-y-3">
-                    {selectedPlan.features.map((feature: string, index: number) => (
-                      <li key={index} className="text-sm text-gray-700 flex items-start leading-relaxed">
-                        <span className="w-1 h-1 bg-gray-400 rounded-full mt-2.5 mr-4 flex-shrink-0"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
 
-              {/* Floor Plan Image - Right Side */}
-              <div className="lg:col-span-7 order-1 lg:order-2">
-                <div className="bg-white border border-gray-200 rounded-lg p-6 lg:p-8 shadow-sm">
-                  <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center">
-                    <Image
-                      src={selectedPlan.image || "/placeholder.svg"}
-                      alt={selectedPlan.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-contain"
-                      priority
-                    />
-                  </div>
+              {/* Features */}
+              <div>
+                <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
+                  Premium Features
+                </h3>
+                <div className="grid grid-cols-1 gap-4">
+                  {selectedPlan.features.map((feature: string, index: number) => (
+                    <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
+                      <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Interior Images Slideshow Section */}
-            {selectedPlan.interiorImages && selectedPlan.interiorImages.length > 0 && (
-              <div className="border-t border-gray-100 pt-8 sm:pt-12 lg:pt-16">
-                <div className="text-center mb-8 sm:mb-12">
-                  <h2 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">A Closer Look</h2>
-                  <p className="text-base sm:text-lg text-gray-600 px-4">Explore the interior spaces and design details</p>
+            {/* Floor Plan Image - Right Side */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-stone-200">
+                <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
+                  <Image
+                    src={selectedPlan.image || "/placeholder.svg"}
+                    alt={selectedPlan.title}
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-contain p-8"
+                    priority
+                  />
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start lg:items-center">
-                  {/* Slideshow */}
-                  <div className="relative order-1 lg:order-1">
-                    <div className="aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden relative">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={currentImageIndex}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-full h-full cursor-pointer"
-                          onClick={() => handleImageClick(selectedPlan.interiorImages[currentImageIndex])}
-                        >
-                          <Image
-                            src={selectedPlan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
-                            alt={selectedPlan.interiorImages[currentImageIndex].name}
-                            width={600}
-                            height={450}
-                            className="w-full h-full object-cover"
-                          />
-                        </motion.div>
-                      </AnimatePresence>
+          {/* Interior Images Slideshow Section */}
+          {selectedPlan.interiorImages && selectedPlan.interiorImages.length > 0 && (
+            <section className="border-t border-stone-200 pt-20">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-light text-stone-900 mb-6">Interior Showcase</h2>
+                <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                  Step inside and experience the thoughtful design that defines luxury living
+                </p>
+              </div>
 
-                      {/* Navigation Arrows */}
-                      {selectedPlan.interiorImages.length > 1 && (
-                        <>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full w-8 h-8 sm:w-10 sm:h-10 p-0 shadow-lg"
-                            onClick={prevImage}
-                          >
-                            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full w-8 h-8 sm:w-10 sm:h-10 p-0 shadow-lg"
-                            onClick={nextImage}
-                          >
-                            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-                          </Button>
-                        </>
-                      )}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                {/* Slideshow */}
+                <div className="relative order-1 lg:order-1">
+                  <div className="aspect-[4/3] bg-stone-100 rounded-2xl overflow-hidden relative shadow-xl">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="w-full h-full cursor-pointer"
+                        onClick={() => handleImageClick(selectedPlan.interiorImages[currentImageIndex])}
+                      >
+                        <Image
+                          src={selectedPlan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
+                          alt={selectedPlan.interiorImages[currentImageIndex].name}
+                          width={600}
+                          height={450}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
 
-                      {/* Image Counter */}
-                      <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-black/70 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm">
-                        {currentImageIndex + 1} / {selectedPlan.interiorImages.length}
-                      </div>
-                    </div>
-
-                    {/* Dots Navigation */}
+                    {/* Navigation Arrows */}
                     {selectedPlan.interiorImages.length > 1 && (
-                      <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
-                        {selectedPlan.interiorImages.map((_: any, index: number) => (
-                          <button
-                            key={index}
-                            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                              index === currentImageIndex ? "bg-gray-900" : "bg-gray-300 hover:bg-gray-400"
-                            }`}
-                            onClick={() => setCurrentImageIndex(index)}
-                          />
-                        ))}
-                      </div>
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm"
+                          onClick={prevImage}
+                        >
+                          <ChevronLeft className="h-5 w-5" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm"
+                          onClick={nextImage}
+                        >
+                          <ChevronRight className="h-5 w-5" />
+                        </Button>
+                      </>
                     )}
+
+                    {/* Image Counter */}
+                    <div className="absolute bottom-4 left-4 bg-black/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
+                      {currentImageIndex + 1} of {selectedPlan.interiorImages.length}
+                    </div>
                   </div>
 
-                  {/* Current Image Info */}
-                  <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-light text-gray-900 mb-2">
-                        {selectedPlan.interiorImages[currentImageIndex].name}
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600">
-                        Experience the thoughtfully designed interior spaces that blend comfort with modern elegance.
-                      </p>
-                    </div>
-
-                    {/* Room List */}
-                    <div className="space-y-2 sm:space-y-3">
-                      {selectedPlan.interiorImages.map((room: any, index: number) => (
-                        <Button
-                          key={room.id}
-                          variant={index === currentImageIndex ? "default" : "outline"}
-                          className={`w-full justify-start text-left text-sm sm:text-base py-2 sm:py-3 ${
-                            index === currentImageIndex 
-                              ? "bg-gray-900 text-white" 
-                              : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                  {/* Dots Navigation */}
+                  {selectedPlan.interiorImages.length > 1 && (
+                    <div className="flex justify-center mt-8 space-x-3">
+                      {selectedPlan.interiorImages.map((_: any, index: number) => (
+                        <button
+                          key={index}
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === currentImageIndex ? "bg-amber-600" : "bg-stone-300 hover:bg-stone-400"
                           }`}
                           onClick={() => setCurrentImageIndex(index)}
-                        >
-                          {room.name}
-                        </Button>
+                        />
                       ))}
                     </div>
+                  )}
+                </div>
+
+                {/* Current Image Info */}
+                <div className="space-y-8 order-2 lg:order-2">
+                  <div>
+                    <h3 className="text-3xl font-light text-stone-900 mb-4">
+                      {selectedPlan.interiorImages[currentImageIndex].name}
+                    </h3>
+                    <p className="text-lg text-stone-600 leading-relaxed">
+                      Experience the seamless blend of functionality and elegance in every carefully designed space, 
+                      where luxury meets livability in perfect harmony.
+                    </p>
+                  </div>
+
+                  {/* Room List */}
+                  <div className="space-y-3">
+                    {selectedPlan.interiorImages.map((room: any, index: number) => (
+                      <Button
+                        key={room.id}
+                        variant={index === currentImageIndex ? "default" : "ghost"}
+                        className={`w-full justify-start text-left py-4 px-6 text-base rounded-xl transition-all duration-300 ${
+                          index === currentImageIndex 
+                            ? "bg-amber-600 text-white shadow-lg" 
+                            : "text-stone-700 hover:bg-stone-50 hover:text-stone-900"
+                        }`}
+                        onClick={() => setCurrentImageIndex(index)}
+                      >
+                        {room.name}
+                      </Button>
+                    ))}
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        )}
-      </main>
+            </section>
+          )}
+        </main>
+      )}
 
       {/* Full Screen Image Dialog */}
       <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
@@ -475,7 +577,7 @@ export default function FloorplansPage() {
               </div>
 
               <div className="absolute top-6 left-6 z-20">
-                <div className="bg-black/80 text-white px-4 py-2 rounded">
+                <div className="bg-black/80 text-white px-6 py-3 rounded-xl backdrop-blur-sm">
                   <p className="text-sm font-medium">{selectedImage.name}</p>
                 </div>
               </div>
