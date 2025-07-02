@@ -24,10 +24,11 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Master bedroom with ensuite", "Dining"],
     interiorImages: [
-      { id: 1, name: "Family Room", image: "/images/plan1.png" },
-      { id: 2, name: "Master Suite", image: "/images/plan2.png" },
-      { id: 3, name: "Alfresco", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 4, name: "Kitchen", image: "/images/plan3.png" }
+      { id: 1, name: "Grand Family Room", image: "/images/plan1.png" },
+      { id: 2, name: "Master Suite Retreat", image: "/images/plan2.png" },
+      { id: 3, name: "Outdoor Alfresco Living", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 4, name: "Chef's Kitchen & Scullery", image: "/images/plan3.png" },
+      { id: 5, name: "Formal Lounge", image: "/images/entertaining-suite.png" }
     ]
   },
   {
@@ -36,17 +37,19 @@ const singleStoreyPlans = [
     subtitle: "Single Storey",
     image: "/images/4-bed.png",
     pdfUrl: "/floorplans/floor4.pdf",
-    interiorSqft: "204 sq m",
+    interiorSqft: "268 sq m",
     exteriorSqft: "45 sq m",
     bedrooms: 4,
     bathrooms: 2,
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Guest bedroom with ensuite", "Car Parking Space", "Dining & Living Room"],
     interiorImages: [
-      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
-      { id: 2, name: "Family Living", image: "/images/plan2.png" },
-      { id: 3, name: "Kitchen Area", image: "/images/plan4.jpg" },
-      { id: 4, name: "Dining Room", image: "/images/plan3.png" }
+      { id: 1, name: "Expansive Master Bedroom", image: "/images/4-Bedroom.png" },
+      { id: 2, name: "Open Plan Family Living", image: "/images/4-bedroom1.png" },
+      { id: 3, name: "Modern Kitchen Hub", image: "/images/plan4.jpg" },
+      { id: 4, name: "Separate Dining Room", image: "/images/First Floor Double Storey.png" },
+      { id: 5, name: "Fourth Bedroom Office", image: "/images/3Bedroom elevations.png" },
+      { id: 6, name: "Guest Bedroom Ensuite", image: "/images/plan1.png" }
     ]
   }
 ]

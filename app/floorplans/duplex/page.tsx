@@ -24,10 +24,11 @@ const duplexPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Swimming Pool", "Dining", "Veranda at the back", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
-      { id: 2, name: "Living Room", image: "/images/plan2.png" },
-      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
-      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+      { id: 1, name: "Master Suite with Pool View", image: "/images/plan1.png" },
+      { id: 2, name: "Open Plan Lounge", image: "/images/plan2.png" },
+      { id: 3, name: "Modern Kitchen & Island", image: "/images/plan3.png" },
+      { id: 4, name: "Swimming Pool & Veranda", image: "/images/plan4.jpg" },
+      { id: 5, name: "Guest Bedroom Ensuite", image: "/images/3Bedroom.png" }
     ]
   },
   {
@@ -43,10 +44,11 @@ const duplexPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
-      { id: 2, name: "Living Room", image: "/images/plan2.png" },
-      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
-      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
+      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
+      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
     ]
   },
   {
@@ -62,10 +64,11 @@ const duplexPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
-      { id: 2, name: "Living Room", image: "/images/plan2.png" },
-      { id: 3, name: "Kitchen", image: "/images/plan3.png" },
-      { id: 4, name: "Dining Area", image: "/images/plan4.jpg" }
+      { id: 1, name: "Luxury Master Suite", image: "/images/4-bedroom1.png" },
+      { id: 2, name: "Double Volume Lounge", image: "/images/plan3.png" },
+      { id: 3, name: "Gourmet Kitchen & Scullery", image: "/images/plan4.jpg" },
+      { id: 4, name: "Private Guest Wing", image: "/images/entertaining-suite.png" },
+      { id: 5, name: "Children's Bedroom Suite", image: "/images/3Bedroom elevations.png" }
     ]
   }
 ]

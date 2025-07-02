@@ -14,18 +14,20 @@ const doubleStoreyPlans = [
   {
     id: 2,
     title: "3-Bedroom Elevations",
-    subtitle: "Ground Floor",
-    image: "/images/plan1.png",
+    subtitle: "Architectural Design",
+    image: "/images/3Bedroom elevations.png",
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "245 sq m",
     exteriorSqft: "25 sq m",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
-    features: ["Back Elevation", "Side Elevation", "Side Elevation 2"],
+    features: ["Front Elevation Design", "Side Elevation Views", "Architectural Details", "Modern Facade"],
     interiorImages: [
-      { id: 1, name: "Front View", image: "/images/3Bedroom.png" },
-      { id: 2, name: "Side View", image: "/images/plan2.png" }
+      { id: 1, name: "Front Elevation", image: "/images/3Bedroom.png" },
+      { id: 2, name: "Side Elevation View", image: "/images/plan2.png" },
+      { id: 3, name: "Architectural Details", image: "/images/entertaining-suite.png" },
+      { id: 4, name: "Street Perspective", image: "/images/plan1.png" }
     ]
   },
   {
@@ -41,10 +43,11 @@ const doubleStoreyPlans = [
     powderRooms: 1,
     features: ["Master bedroom with ensuite", "Dining", "Kitchen", "Pantry", "Enough Parking Space"],
     interiorImages: [
-      { id: 1, name: "Master Bedroom", image: "/images/plan1.png" },
-      { id: 2, name: "Kitchen & Dining", image: "/images/plan2.png" },
-      { id: 3, name: "Living Area", image: "/images/plan3.png" },
-      { id: 4, name: "Exterior View", image: "/images/plan4.jpg" }
+      { id: 1, name: "Ground Floor Master", image: "/images/plan1.png" },
+      { id: 2, name: "Kitchen & Dining Hub", image: "/images/plan2.png" },
+      { id: 3, name: "Family Living Space", image: "/images/plan3.png" },
+      { id: 4, name: "Double Garage & Entry", image: "/images/plan4.jpg" },
+      { id: 5, name: "Pantry & Storage", image: "/images/4-bed.png" }
     ]
   },
   {
@@ -53,17 +56,19 @@ const doubleStoreyPlans = [
     subtitle: "First Floor",
     image: "/images/First Floor Double Storey.png",
     pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "245 sq m",
-    exteriorSqft: "25 sq m",
+    interiorSqft: "180 sq m",
+    exteriorSqft: "15 sq m",
     bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
-    features: ["Main bedroom with ensuite", "Dining", "Kitchen", "Store room", "Living room"],
+    features: ["Upper level master suite", "Two additional bedrooms", "Shared bathroom", "Store room", "Private balcony"],
     interiorImages: [
-      { id: 1, name: "Bedroom 1", image: "/images/plan1.png" },
-      { id: 2, name: "Bedroom 2", image: "/images/plan2.png" },
-      { id: 3, name: "Central Living", image: "/images/plan3.png" },
-      { id: 4, name: "Common Area", image: "/images/plan4.jpg" }
+      { id: 1, name: "Master Suite Upstairs", image: "/images/4-Bedroom.png" },
+      { id: 2, name: "Bedroom Two", image: "/images/4-bedroom1.png" },
+      { id: 3, name: "Bedroom Three", image: "/images/3Bedroom.png" },
+      { id: 4, name: "Upper Level Living", image: "/images/entertaining-suite.png" },
+      { id: 5, name: "Private Balcony", image: "/images/plan3.png" },
+      { id: 6, name: "Storage & Utility", image: "/images/plan4.jpg" }
     ]
   }
 ]
