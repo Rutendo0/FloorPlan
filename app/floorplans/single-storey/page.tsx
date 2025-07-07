@@ -73,14 +73,14 @@ const singleStoreyPlans = [
     ]
   },
    {
-    id: 7,
+    id: 9,
     title: "3-Bedroom Single Storey",
     subtitle: "Ground Floor",
     image: "/images/plan1.png",
     pdfUrl: "/floorplans/floor1.pdf",
     interiorSqft: "340 sq m",
     exteriorSqft: "25 sq m",
-    bedrooms: 4,
+    bedrooms: 3,
     bathrooms: 2,
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
@@ -148,38 +148,44 @@ export default function SingleStoreyFloorplansPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-6 py-4 sticky top-0 z-50">
+      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-4 sm:px-6 py-4 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
-            <ArrowLeft className="h-5 w-5 text-stone-600" />
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 text-stone-600" />
             <div>
-              <h1 className="text-xl font-light text-stone-800 tracking-wide">
+              <h1 className="text-lg sm:text-xl font-light text-stone-800 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-stone-500 uppercase tracking-wider">
+              <p className="text-xs text-stone-500 uppercase tracking-wider hidden sm:block">
                 Single Storey Floor Plans
               </p>
             </div>
           </Link>
-          <div className="flex space-x-3">
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
+          <div className="flex space-x-2 sm:space-x-3">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 hidden sm:flex">
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 sm:hidden">
+              <Download className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 hidden sm:flex">
               <Share2 className="h-4 w-4 mr-2" />
               Share
+            </Button>
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 sm:hidden">
+              <Share2 className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </header>
 
       {/* Navigation Dots - Fixed Position */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
+      <div className="fixed right-2 sm:right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-3 sm:space-y-4">
         {singleStoreyPlans.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentPlanIndex 
                 ? "bg-amber-600 shadow-lg shadow-amber-600/50" 
                 : "bg-amber-400/30 hover:bg-amber-400/50"
@@ -211,20 +217,20 @@ export default function SingleStoreyFloorplansPage() {
             )}
             
             <section className="min-h-screen snap-start flex items-center">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
                 {/* Plan Details - Left Side */}
-                <div className="lg:col-span-5 space-y-8">
+                <div className="lg:col-span-5 space-y-6 sm:space-y-8">
                   <div>
                     <div className="text-sm text-stone-500 uppercase tracking-[0.15em] mb-3 font-light">
                       {plan.subtitle} • Plan {plan.id}
                     </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-stone-800 mb-8 tracking-tight leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-5xl font-light text-stone-800 mb-6 sm:mb-8 tracking-tight leading-tight">
                       {plan.title}
                     </h1>
 
                     {/* Specifications */}
-                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+                    <div className="bg-stone-50 rounded-2xl p-6 sm:p-8 border border-stone-200">
                       <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
                         Specifications
                       </h3>
@@ -262,11 +268,11 @@ export default function SingleStoreyFloorplansPage() {
                     <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
                       Premium Features
                     </h3>
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 gap-3 sm:gap-4">
                       {plan.features.map((feature: string, index: number) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
+                        <div key={index} className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl border border-stone-200">
                           <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
+                          <span className="text-sm sm:text-base text-stone-700 font-light leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -274,16 +280,16 @@ export default function SingleStoreyFloorplansPage() {
                 </div>
 
                 {/* Floor Plan Image & Interior Slideshow - Right Side */}
-                <div className="lg:col-span-7 space-y-12">
+                <div className="lg:col-span-7 space-y-8 sm:space-y-12">
                   {/* Floor Plan */}
-                  <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
+                  <div className="bg-white rounded-2xl p-4 sm:p-8 border border-stone-200 shadow-lg">
                     <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
                       <Image
                         src={plan.image || "/placeholder.svg"}
                         alt={plan.title}
                         width={800}
                         height={600}
-                        className="w-full h-full object-contain p-8"
+                        className="w-full h-full object-contain p-4 sm:p-8"
                         priority={planIndex <= 1}
                       />
                     </div>
@@ -291,13 +297,13 @@ export default function SingleStoreyFloorplansPage() {
 
                   {/* Interior Images Slideshow */}
                   {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
-                    <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
-                      <div className="text-center mb-8">
-                        <h3 className="text-2xl font-light text-stone-900 mb-4">Interior Showcase</h3>
-                        <p className="text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
+                    <div className="bg-white rounded-2xl p-4 sm:p-8 border border-stone-200 shadow-lg">
+                      <div className="text-center mb-6 sm:mb-8">
+                        <h3 className="text-xl sm:text-2xl font-light text-stone-900 mb-3 sm:mb-4">Interior Showcase</h3>
+                        <p className="text-sm sm:text-base text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
                       </div>
 
-                      <div className="space-y-8">
+                      <div className="space-y-6 sm:space-y-8">
                         {/* Slideshow */}
                         <div className="relative">
                           <div className="aspect-[4/3] bg-stone-50 rounded-xl overflow-hidden relative">
@@ -327,24 +333,24 @@ export default function SingleStoreyFloorplansPage() {
                                                           <Button
                                                             variant="ghost"
                                                             size="sm"
-                                                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
+                                                            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-10 h-10 sm:w-12 sm:h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
                                                             onClick={prevImage}
                                                           >
-                                                            <ChevronLeft className="h-5 w-5" />
+                                                            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                                                           </Button>
                                                           <Button
                                                             variant="ghost"
                                                             size="sm"
-                                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
+                                                            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-10 h-10 sm:w-12 sm:h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
                                                             onClick={nextImage}
                                                           >
-                                                            <ChevronRight className="h-5 w-5" />
+                                                            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                                                           </Button>
                                                         </>
                                                       )}
 
                             {/* Image Counter */}
-                            <div className="absolute bottom-4 left-4 bg-stone-900/80 text-white/ px-4 py-2 rounded-full text-sm backdrop-blur-sm border border-amber-600/20">
+                            <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-stone-900/80 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm backdrop-blur-sm border border-amber-600/20">
                               {currentImageIndex + 1} of {plan.interiorImages.length}
                             </div>
                           </div>
@@ -376,15 +382,15 @@ export default function SingleStoreyFloorplansPage() {
                         </div>
 
                         {/* Room List */}
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                           {plan.interiorImages.map((room: any, index: number) => (
                             <Button
                               key={room.id}
                               variant={index === currentImageIndex ? "default" : "ghost"}
-                              className={`justify-start text-left py-3 px-4 text-sm rounded-xl transition-all duration-300 ${
+                              className={`justify-start text-left py-2.5 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm rounded-xl transition-all duration-300 ${
                                 index === currentImageIndex 
                                   ? "bg-amber-600 text-white shadow-lg" 
-                                  : "text-amber-200/80 hover:bg-stone-700/50 hover:text-amber-100 border border-amber-600/10"
+                                  : "text-stone-600 hover:bg-stone-100 border border-stone-200"
                               }`}
                               onClick={() => setCurrentImageIndex(index)}
                             >
