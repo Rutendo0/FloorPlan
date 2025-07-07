@@ -76,21 +76,21 @@ const doubleStoreyPlans = [
    {
     id: 4,
     title: "4-Bedroom Double Storey Semi-Detached Duplex",
-    subtitle: "Ground Floor",
+    subtitle: "First Floor",
     image: "/images/4-Bedroom.png",
     pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "340 sq m",
-    exteriorSqft: "25 sq m",
+    interiorSqft: "250 sq m",
+    exteriorSqft: "15 sq m",
     bedrooms: 4,
-    bathrooms: 2,
+    bathrooms: 3,
     powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
+    features: ["Upper level master suite", "Three additional bedrooms", "Family bathroom", "Study nook", "Private balcony access"],
     interiorImages: [
-      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
-      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
-      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+      { id: 1, name: "Upper Level Master Suite", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Second Bedroom", image: "/images/4-bed.png" },
+      { id: 3, name: "Third Bedroom", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Fourth Bedroom", image: "/images/plan1.png" },
+      { id: 5, name: "Upper Level Living Area", image: "/images/plan2.png" }
     ]
   }
 ]
@@ -271,7 +271,8 @@ export default function DoubleStoreyFloorplansPage() {
                         width={800}
                         height={600}
                         className="w-full h-full object-contain p-8"
-                        priority={planIndex <= 1}
+                        priority={planIndex === 0}
+                        loading={planIndex > 0 ? "lazy" : "eager"}
                       />
                     </div>
                   </div>
@@ -304,6 +305,7 @@ export default function DoubleStoreyFloorplansPage() {
                                   width={600}
                                   height={450}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
                                 />
                               </motion.div>
                             </AnimatePresence>

@@ -202,7 +202,8 @@ export default function DuplexFloorplansPage() {
                         width={800}
                         height={600}
                         className="w-full h-full object-contain p-4"
-                        priority={planIndex <= 1}
+                        priority={planIndex === 0}
+                        loading={planIndex > 0 ? "lazy" : "eager"}
                       />
                     </div>
                   </div>
@@ -235,6 +236,7 @@ export default function DuplexFloorplansPage() {
                                   width={600}
                                   height={450}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
                                 />
                               </motion.div>
                             </AnimatePresence>
