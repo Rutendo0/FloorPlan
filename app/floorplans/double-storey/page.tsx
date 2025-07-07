@@ -25,11 +25,14 @@ const doubleStoreyPlans = [
     powderRooms: 1,
     features: ["Master bedroom with ensuite", "Dining", "Kitchen", "Pantry", "Enough Parking Space"],
     interiorImages: [
-      { id: 1, name: "Ground Floor Master", image: "/images/plan1.png" },
-      { id: 2, name: "Kitchen & Dining Hub", image: "/images/plan2.png" },
-      { id: 3, name: "Family Living Space", image: "/images/plan3.png" },
-      { id: 4, name: "Double Garage & Entry", image: "/images/plan4.jpg" },
-      { id: 5, name: "Pantry & Storage", image: "/images/4-bed.png" }
+      { id: 11, name: "Ground Floor Master", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 12, name: "Kitchen & Dining Hub", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 13, name: "Family Living Space", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 14, name: "Double Garage & Entry", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" },
+      { id: 15, name: "Pantry & Storage", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" },
+      { id: 16, name: "Powder Room", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 17, name: "Guest Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 18, name: "Formal Dining", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" }
     ]
   },
   {
@@ -45,12 +48,14 @@ const doubleStoreyPlans = [
     powderRooms: 1,
     features: ["Upper level master suite", "Two additional bedrooms", "Shared bathroom", "Store room", "Private balcony"],
     interiorImages: [
-      { id: 1, name: "Master Suite Upstairs", image: "/images/4-Bedroom.png" },
-      { id: 2, name: "Bedroom Two", image: "/images/4-bedroom1.png" },
-      { id: 3, name: "Bedroom Three", image: "/images/3Bedroom.png" },
-      { id: 4, name: "Upper Level Living", image: "/images/entertaining-suite.png" },
-      { id: 5, name: "Private Balcony", image: "/images/plan3.png" },
-      { id: 6, name: "Storage & Utility", image: "/images/plan4.jpg" }
+      { id: 21, name: "Master Suite Upstairs", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 22, name: "Bedroom Two", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 23, name: "Bedroom Three", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 24, name: "Upper Level Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 25, name: "Private Balcony", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 26, name: "Storage & Utility", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" },
+      { id: 27, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 28, name: "Study Nook", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
     ]
   },
    {
@@ -66,11 +71,15 @@ const doubleStoreyPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
-      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
-      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+      { id: 31, name: "Spacious Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 32, name: "Family Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 33, name: "Contemporary Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 34, name: "Formal Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
+      { id: 35, name: "Guest Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 36, name: "Fourth Bedroom Study", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 37, name: "Guest Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 38, name: "Main Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 39, name: "Powder Room", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
     ]
   },
    {
@@ -86,11 +95,15 @@ const doubleStoreyPlans = [
     powderRooms: 1,
     features: ["Upper level master suite", "Three additional bedrooms", "Family bathroom", "Study nook", "Private balcony access"],
     interiorImages: [
-      { id: 1, name: "Upper Level Master Suite", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Second Bedroom", image: "/images/4-bed.png" },
-      { id: 3, name: "Third Bedroom", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Fourth Bedroom", image: "/images/plan1.png" },
-      { id: 5, name: "Upper Level Living Area", image: "/images/plan2.png" }
+      { id: 41, name: "Upper Level Master Suite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 42, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 43, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 44, name: "Fourth Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 45, name: "Upper Level Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 46, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 47, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 48, name: "Study Nook", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 49, name: "Private Balcony", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" }
     ]
   }
 ]

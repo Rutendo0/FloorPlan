@@ -24,11 +24,16 @@ const duplexPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Swimming Pool", "Dining", "Veranda at the back", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Master Suite with Pool View", image: "/images/plan1.png" },
-      { id: 2, name: "Open Plan Lounge", image: "/images/plan2.png" },
-      { id: 3, name: "Modern Kitchen & Island", image: "/images/plan3.png" },
-      { id: 4, name: "Swimming Pool & Veranda", image: "/images/plan4.jpg" },
-      { id: 5, name: "Guest Bedroom Ensuite", image: "/images/3Bedroom.png" }
+      { id: 51, name: "Master Suite with Pool View", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 52, name: "Open Plan Lounge", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 53, name: "Modern Kitchen & Island", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 54, name: "Swimming Pool & Veranda", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 55, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 56, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 57, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 58, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 59, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 60, name: "Dining Area", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" }
     ]
   },
  

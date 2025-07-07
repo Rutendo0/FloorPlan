@@ -23,15 +23,18 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Master bedroom with ensuite", "Dining"],
     interiorImages: [
-      { id: 1, name: "Grand Family Room", image: "/images/plan1.png" },
-      { id: 2, name: "Master Suite Retreat", image: "/images/plan2.png" },
-      { id: 3, name: "Outdoor Alfresco Living", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 4, name: "Chef's Kitchen & Scullery", image: "/images/plan3.png" },
-      { id: 5, name: "Formal Lounge", image: "/images/entertaining-suite.png" }
+      { id: 61, name: "Grand Family Room", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 62, name: "Master Suite Retreat", image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop" },
+      { id: 63, name: "Outdoor Alfresco Living", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 64, name: "Chef's Kitchen & Scullery", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 65, name: "Formal Lounge", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop" },
+      { id: 66, name: "Guest Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 67, name: "Walk-in Closet", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" },
+      { id: 68, name: "Home Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
     ]
   },
   {
-    id: 7,
+    id: 16,
     title: "4-Bedroom Single Storey",
     subtitle: "Single Storey",
     image: "/images/4-bed.png",
@@ -43,16 +46,19 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Guest bedroom with ensuite", "Car Parking Space", "Dining & Living Room"],
     interiorImages: [
-      { id: 1, name: "Expansive Master Bedroom", image: "/images/4-Bedroom.png" },
-      { id: 2, name: "Open Plan Family Living", image: "/images/4-bedroom1.png" },
-      { id: 3, name: "Modern Kitchen Hub", image: "/images/plan4.jpg" },
-      { id: 4, name: "Separate Dining Room", image: "/images/First Floor Double Storey.png" },
-      { id: 5, name: "Fourth Bedroom Office", image: "/images/3Bedroom elevations.png" },
-      { id: 6, name: "Guest Bedroom Ensuite", image: "/images/plan1.png" }
+      { id: 161, name: "Expansive Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 162, name: "Open Plan Family Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 163, name: "Modern Kitchen Hub", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 164, name: "Separate Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
+      { id: 165, name: "Fourth Bedroom Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 166, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 167, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 168, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 169, name: "Laundry Room", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" }
     ]
   },
    {
-    id: 8,
+    id: 17,
     title: "3-Bedroom Single Storey",
     subtitle: "3-BED",
     image: "/images/plan2.png",
@@ -64,15 +70,17 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
-      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
-      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
-      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+      { id: 171, name: "Spacious Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 172, name: "Family Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 173, name: "Contemporary Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 174, name: "Formal Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
+      { id: 175, name: "Guest Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 176, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 177, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
     ]
   },
    {
-    id: 9,
+    id: 18,
     title: "Compact 3-Bedroom Single Storey",
     subtitle: "Single Level",
     image: "/images/plan1.png",
@@ -84,11 +92,13 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Open plan living", "Master bedroom with ensuite", "Modern kitchen", "Covered patio", "Double garage"],
     interiorImages: [
-      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
-      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
-      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+      { id: 181, name: "Cozy Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 182, name: "Open Plan Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 183, name: "Compact Modern Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 184, name: "Covered Patio", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 185, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 186, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 187, name: "Main Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
     ]
   },
 ]
