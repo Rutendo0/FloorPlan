@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Building2, Home, Building } from "lucide-react"
@@ -43,6 +44,12 @@ const categories = [
 ]
 
 export default function FloorplansPage() {
+  const [loadingCategory, setLoadingCategory] = useState<string | null>(null)
+
+  const handleCategoryClick = (categoryId: string) => {
+    setLoadingCategory(categoryId)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-stone-50">
       {/* Elegant Header */}
@@ -124,8 +131,24 @@ export default function FloorplansPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Link href={category.href} className="group block">
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+              <Link 
+                href={category.href} 
+                className="group block relative"
+                onClick={() => handleCategoryClick(category.id)}
+              >
+                {/* Loading Overlay */}
+                {loadingCategory === category.id && (
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-sm z-50 flex items-center justify-center rounded-2xl">
+                    <div className="text-center">
+                      <div className="w-12 h-12 border-4 border-amber-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+                      <p className="text-stone-600 text-sm uppercase tracking-wider font-medium">
+                        Loading {category.title}
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2"></div>
                   {/* Image Container */}
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-20`}></div>

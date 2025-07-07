@@ -1,4 +1,3 @@
-
 "use client"
 
 import type React from "react"
@@ -215,7 +214,7 @@ export default function SingleStoreyFloorplansPage() {
                 </div>
               </div>
             )}
-            
+
             <section className="min-h-screen snap-start flex items-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
@@ -290,7 +289,8 @@ export default function SingleStoreyFloorplansPage() {
                         width={800}
                         height={600}
                         className="w-full h-full object-contain p-4 sm:p-8"
-                        priority={planIndex <= 1}
+                        priority={planIndex === 0}
+                        loading={planIndex > 0 ? "lazy" : "eager"}
                       />
                     </div>
                   </div>
@@ -323,6 +323,7 @@ export default function SingleStoreyFloorplansPage() {
                                   width={600}
                                   height={450}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
                                 />
                               </motion.div>
                             </AnimatePresence>
