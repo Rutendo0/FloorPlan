@@ -11,27 +11,9 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { motion, AnimatePresence } from "framer-motion"
 
 const doubleStoreyPlans = [
+ 
   {
-    id: 2,
-    title: "3-Bedroom Elevations",
-    subtitle: "Architectural Design",
-    image: "/images/3Bedroom elevations.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "245 sq m",
-    exteriorSqft: "25 sq m",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Front Elevation Design", "Side Elevation Views", "Architectural Details", "Modern Facade"],
-    interiorImages: [
-      { id: 1, name: "Front Elevation", image: "/images/3Bedroom.png" },
-      { id: 2, name: "Side Elevation View", image: "/images/plan2.png" },
-      { id: 3, name: "Architectural Details", image: "/images/entertaining-suite.png" },
-      { id: 4, name: "Street Perspective", image: "/images/plan1.png" }
-    ]
-  },
-  {
-    id: 3,
+    id: 1,
     title: "Double Storey 3-Bedroom",
     subtitle: "Ground Floor",
     image: "/images/Double Storey 3Bedroom.png",
@@ -51,8 +33,8 @@ const doubleStoreyPlans = [
     ]
   },
   {
-    id: 4,
-    title: "First Floor 3-Bedrooms",
+    id: 2,
+    title: "Double Storey 3-Bedroom",
     subtitle: "First Floor",
     image: "/images/First Floor Double Storey.png",
     pdfUrl: "/floorplans/floor1.pdf",
@@ -69,6 +51,46 @@ const doubleStoreyPlans = [
       { id: 4, name: "Upper Level Living", image: "/images/entertaining-suite.png" },
       { id: 5, name: "Private Balcony", image: "/images/plan3.png" },
       { id: 6, name: "Storage & Utility", image: "/images/plan4.jpg" }
+    ]
+  },
+   {
+    id: 3,
+    title: "4-Bedroom Double Storey Semi-Detached Duplex",
+    subtitle: "Ground Floor",
+    image: "/images/4-bedroom1.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "340 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 4,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
+      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
+      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+    ]
+  },
+   {
+    id: 4,
+    title: "4-Bedroom Double Storey Semi-Detached Duplex",
+    subtitle: "Ground Floor",
+    image: "/images/4-Bedroom.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "340 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 4,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
+      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
+      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
     ]
   }
 ]
@@ -181,7 +203,7 @@ export default function DoubleStoreyFloorplansPage() {
                 {/* Plan Details - Left Side */}
                 <div className="lg:col-span-5 space-y-8">
                   <div>
-                    <div className="text-sm text-amber-600 uppercase tracking-wider mb-4 font-medium">
+                    <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">
                       {plan.subtitle} • Plan {plan.id}
                     </div>
                     <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">

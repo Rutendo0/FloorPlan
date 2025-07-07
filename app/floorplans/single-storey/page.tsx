@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const singleStoreyPlans = [
   {
-    id: 5,
+    id: 6,
     title: "Luxury Single Storey",
     subtitle: "Single Storey",
     image: "/images/plan4.jpg",
@@ -32,7 +32,7 @@ const singleStoreyPlans = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: "4-Bedroom Single Storey",
     subtitle: "Single Storey",
     image: "/images/4-bed.png",
@@ -51,7 +51,47 @@ const singleStoreyPlans = [
       { id: 5, name: "Fourth Bedroom Office", image: "/images/3Bedroom elevations.png" },
       { id: 6, name: "Guest Bedroom Ensuite", image: "/images/plan1.png" }
     ]
-  }
+  },
+   {
+    id: 8,
+    title: "3-Bedroom Single Storey",
+    subtitle: "3-BED",
+    image: "/images/plan2.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "340 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 3,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
+      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
+      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+    ]
+  },
+   {
+    id: 7,
+    title: "3-Bedroom Single Storey",
+    subtitle: "Ground Floor",
+    image: "/images/plan1.png",
+    pdfUrl: "/floorplans/floor1.pdf",
+    interiorSqft: "340 sq m",
+    exteriorSqft: "25 sq m",
+    bedrooms: 4,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
+    interiorImages: [
+      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
+      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
+      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
+      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
+      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
+    ]
+  },
 ]
 
 export default function SingleStoreyFloorplansPage() {
@@ -162,42 +202,42 @@ export default function SingleStoreyFloorplansPage() {
                 {/* Plan Details - Left Side */}
                 <div className="lg:col-span-5 space-y-8">
                   <div>
-                    <div className="text-sm text-amber-400 uppercase tracking-wider mb-4 font-medium">
+                    <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">
                       {plan.subtitle} • Plan {plan.id}
                     </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-amber-100 mb-8 tracking-tight leading-tight">
+                    <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">
                       {plan.title}
                     </h1>
 
                     {/* Specifications */}
-                    <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
-                      <h3 className="text-lg font-medium text-amber-100 mb-6 uppercase tracking-wider">
+                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+                      <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
                         Specifications
                       </h3>
-                      <div className="space-y-6">
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Interior Space</span>
-                          <span className="text-amber-100 font-medium">{plan.interiorSqft}</span>
+                                            <div className="space-y-6">
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Interior Space</span>
+                          <span className="text-stone-900 font-medium">{plan.interiorSqft}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Exterior Space</span>
-                          <span className="text-amber-100 font-medium">{plan.exteriorSqft}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Exterior Space</span>
+                          <span className="text-stone-900 font-medium">{plan.exteriorSqft}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Exposure</span>
-                          <span className="text-amber-100 font-medium">N.E.S.W</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Exposure</span>
+                          <span className="text-stone-900 font-medium">N.E.S.W</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Bedrooms</span>
-                          <span className="text-amber-100 font-medium">{plan.bedrooms}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Bedrooms</span>
+                          <span className="text-stone-900 font-medium">{plan.bedrooms}</span>
                         </div>
-                        <div className="flex justify-between items-center py-4 border-b border-amber-600/20 last:border-b-0">
-                          <span className="text-amber-200/80 font-light">Bathrooms</span>
-                          <span className="text-amber-100 font-medium">{plan.bathrooms}</span>
+                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
+                          <span className="text-stone-600 font-light">Bathrooms</span>
+                          <span className="text-stone-900 font-medium">{plan.bathrooms}</span>
                         </div>
                         <div className="flex justify-between items-center py-4">
-                          <span className="text-amber-200/80 font-light">Powder Rooms</span>
-                          <span className="text-amber-100 font-medium">{plan.powderRooms || 0}</span>
+                          <span className="text-stone-600 font-light">Powder Rooms</span>
+                          <span className="text-stone-900 font-medium">{plan.powderRooms || 0}</span>
                         </div>
                       </div>
                     </div>
@@ -205,14 +245,14 @@ export default function SingleStoreyFloorplansPage() {
 
                   {/* Features */}
                   <div>
-                    <h3 className="text-lg font-medium text-amber-100 mb-8 uppercase tracking-wider">
+                    <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
                       Premium Features
                     </h3>
                     <div className="grid grid-cols-1 gap-4">
                       {plan.features.map((feature: string, index: number) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-stone-800/30 rounded-xl border border-amber-600/10">
+                        <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
                           <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-amber-200/90 font-light leading-relaxed">{feature}</span>
+                          <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -222,8 +262,8 @@ export default function SingleStoreyFloorplansPage() {
                 {/* Floor Plan Image & Interior Slideshow - Right Side */}
                 <div className="lg:col-span-7 space-y-12">
                   {/* Floor Plan */}
-                  <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
-                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-900/50 rounded-xl">
+                  <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
+                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
                       <Image
                         src={plan.image || "/placeholder.svg"}
                         alt={plan.title}
@@ -237,16 +277,16 @@ export default function SingleStoreyFloorplansPage() {
 
                   {/* Interior Images Slideshow */}
                   {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
-                    <div className="bg-stone-800/50 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/10">
+                    <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
                       <div className="text-center mb-8">
-                        <h3 className="text-2xl font-light text-amber-100 mb-4">Interior Showcase</h3>
-                        <p className="text-amber-200/70 font-light">Experience the thoughtfully designed interior spaces</p>
+                        <h3 className="text-2xl font-light text-stone-900 mb-4">Interior Showcase</h3>
+                        <p className="text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
                       </div>
 
                       <div className="space-y-8">
                         {/* Slideshow */}
                         <div className="relative">
-                          <div className="aspect-[4/3] bg-stone-900/50 rounded-xl overflow-hidden relative">
+                          <div className="aspect-[4/3] bg-stone-50 rounded-xl overflow-hidden relative">
                             <AnimatePresence mode="wait">
                               <motion.div
                                 key={currentImageIndex}
@@ -268,29 +308,29 @@ export default function SingleStoreyFloorplansPage() {
                             </AnimatePresence>
 
                             {/* Navigation Arrows */}
-                            {plan.interiorImages.length > 1 && (
-                              <>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-stone-900/90 hover:bg-stone-800 text-amber-400 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-amber-600/20"
-                                  onClick={prevImage}
-                                >
-                                  <ChevronLeft className="h-5 w-5" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-stone-900/90 hover:bg-stone-800 text-amber-400 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-amber-600/20"
-                                  onClick={nextImage}
-                                >
-                                  <ChevronRight className="h-5 w-5" />
-                                </Button>
-                              </>
-                            )}
+                           {plan.interiorImages.length > 1 && (
+                                                        <>
+                                                          <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
+                                                            onClick={prevImage}
+                                                          >
+                                                            <ChevronLeft className="h-5 w-5" />
+                                                          </Button>
+                                                          <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
+                                                            onClick={nextImage}
+                                                          >
+                                                            <ChevronRight className="h-5 w-5" />
+                                                          </Button>
+                                                        </>
+                                                      )}
 
                             {/* Image Counter */}
-                            <div className="absolute bottom-4 left-4 bg-stone-900/80 text-amber-400 px-4 py-2 rounded-full text-sm backdrop-blur-sm border border-amber-600/20">
+                            <div className="absolute bottom-4 left-4 bg-stone-900/80 text-white/ px-4 py-2 rounded-full text-sm backdrop-blur-sm border border-amber-600/20">
                               {currentImageIndex + 1} of {plan.interiorImages.length}
                             </div>
                           </div>
@@ -302,7 +342,7 @@ export default function SingleStoreyFloorplansPage() {
                                 <button
                                   key={index}
                                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                    index === currentImageIndex ? "bg-amber-600" : "bg-amber-400/30 hover:bg-amber-400/50"
+                                    index === currentImageIndex ? "bg-amber-600" : "bg-stone-300 hover:bg-stone-400"
                                   }`}
                                   onClick={() => setCurrentImageIndex(index)}
                                 />
@@ -313,10 +353,10 @@ export default function SingleStoreyFloorplansPage() {
 
                         {/* Current Image Info */}
                         <div className="text-center">
-                          <h4 className="text-xl font-light text-amber-100 mb-2">
+                          <h4 className="text-xl font-light text-stone-900 mb-2">
                             {plan.interiorImages[currentImageIndex].name}
                           </h4>
-                          <p className="text-amber-200/70 font-light">
+                          <p className="text-stone-600 font-light">
                             Thoughtfully designed spaces that blend comfort with luxury
                           </p>
                         </div>

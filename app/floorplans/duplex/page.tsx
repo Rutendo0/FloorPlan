@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const duplexPlans = [
   {
-    id: 1,
+    id: 5,
     title: "3-Bedroom Duplex",
     subtitle: "Ground Floor",
     image: "/images/3Bedroom.png",
@@ -31,46 +31,8 @@ const duplexPlans = [
       { id: 5, name: "Guest Bedroom Ensuite", image: "/images/3Bedroom.png" }
     ]
   },
-  {
-    id: 7,
-    title: "4-Bedroom Double Storey Semi-Detached Duplex",
-    subtitle: "Ground Floor",
-    image: "/images/4-bedroom1.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "340 sq m",
-    exteriorSqft: "25 sq m",
-    bedrooms: 4,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
-    interiorImages: [
-      { id: 1, name: "Spacious Master Bedroom", image: "/images/Double Storey 3Bedroom.png" },
-      { id: 2, name: "Family Living Area", image: "/images/4-bed.png" },
-      { id: 3, name: "Contemporary Kitchen", image: "/images/First Floor Double Storey.png" },
-      { id: 4, name: "Formal Dining Room", image: "/images/plan1.png" },
-      { id: 5, name: "Fourth Bedroom Study", image: "/images/plan2.png" }
-    ]
-  },
-  {
-    id: 8,
-    title: "4-Bedroom Double Storey Semi-Detached Duplex",
-    subtitle: "Ground Floor",
-    image: "/images/4-Bedroom.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "377 sq m",
-    exteriorSqft: "25 sq m",
-    bedrooms: 4,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
-    interiorImages: [
-      { id: 1, name: "Luxury Master Suite", image: "/images/4-bedroom1.png" },
-      { id: 2, name: "Double Volume Lounge", image: "/images/plan3.png" },
-      { id: 3, name: "Gourmet Kitchen & Scullery", image: "/images/plan4.jpg" },
-      { id: 4, name: "Private Guest Wing", image: "/images/entertaining-suite.png" },
-      { id: 5, name: "Children's Bedroom Suite", image: "/images/3Bedroom elevations.png" }
-    ]
-  }
+ 
+  
 ]
 
 export default function DuplexFloorplansPage() {
@@ -160,8 +122,8 @@ export default function DuplexFloorplansPage() {
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-200 ${
               index === currentPlanIndex 
-                ? "bg-gray-800" 
-                : "bg-gray-300 hover:bg-gray-400"
+                ? "bg-amber-600 shadow-lg shadow-amber-600/50" 
+                : "bg-stone-400 hover:bg-amber-400"
             }`}
             onClick={() => scrollToPlan(index)}
           />
@@ -182,7 +144,7 @@ export default function DuplexFloorplansPage() {
                 <div className="lg:col-span-5 space-y-12">
                   <div>
                     <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">
-                      {plan.subtitle}
+                      {plan.subtitle} • Plan {plan.id}
                     </div>
                     <h1 className="text-3xl lg:text-4xl font-normal text-gray-900 mb-12 leading-tight">
                       {plan.title}
