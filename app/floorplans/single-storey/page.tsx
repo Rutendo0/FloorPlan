@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const singleStoreyPlans = [
   {
-    id: 6,
+    id: 301,
     title: "Luxury Single Storey",
     subtitle: "Single Storey",
     image: "/images/plan4.jpg",
@@ -23,18 +23,18 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Master bedroom with ensuite", "Dining"],
     interiorImages: [
-      { id: 61, name: "Grand Family Room", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 62, name: "Master Suite Retreat", image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop" },
-      { id: 63, name: "Outdoor Alfresco Living", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
-      { id: 64, name: "Chef's Kitchen & Scullery", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 65, name: "Formal Lounge", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop" },
-      { id: 66, name: "Guest Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 67, name: "Walk-in Closet", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" },
-      { id: 68, name: "Home Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
+      { id: 3011, name: "Grand Family Room", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3012, name: "Master Suite Retreat", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3013, name: "Outdoor Alfresco Living", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 3014, name: "Chef's Kitchen & Scullery", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 3015, name: "Formal Lounge", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop" },
+      { id: 3016, name: "Guest Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 3017, name: "Walk-in Closet", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" },
+      { id: 3018, name: "Home Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
     ]
   },
   {
-    id: 16,
+    id: 302,
     title: "4-Bedroom Single Storey",
     subtitle: "Single Storey",
     image: "/images/4-bed.png",
@@ -46,19 +46,19 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Alfresco at the back", "Family room and lounge", "Scullery and modern kitchen", "Guest bedroom with ensuite", "Car Parking Space", "Dining & Living Room"],
     interiorImages: [
-      { id: 161, name: "Expansive Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 162, name: "Open Plan Family Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 163, name: "Modern Kitchen Hub", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 164, name: "Separate Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
-      { id: 165, name: "Fourth Bedroom Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 166, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 167, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 168, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 169, name: "Laundry Room", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" }
+      { id: 3021, name: "Expansive Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3022, name: "Open Plan Family Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3023, name: "Modern Kitchen Hub", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 3024, name: "Separate Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
+      { id: 3025, name: "Fourth Bedroom Office", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3026, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3027, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3028, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 3029, name: "Laundry Room", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" }
     ]
   },
-   {
-    id: 17,
+  {
+    id: 303,
     title: "3-Bedroom Single Storey",
     subtitle: "3-BED",
     image: "/images/plan2.png",
@@ -70,17 +70,17 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
     interiorImages: [
-      { id: 171, name: "Spacious Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 172, name: "Family Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 173, name: "Contemporary Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 174, name: "Formal Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
-      { id: 175, name: "Guest Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 176, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 177, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
+      { id: 3031, name: "Spacious Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3032, name: "Family Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3033, name: "Contemporary Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 3034, name: "Formal Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
+      { id: 3035, name: "Guest Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3036, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 3037, name: "Children's Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
     ]
   },
-   {
-    id: 18,
+  {
+    id: 304,
     title: "Compact 3-Bedroom Single Storey",
     subtitle: "Single Level",
     image: "/images/plan1.png",
@@ -92,13 +92,13 @@ const singleStoreyPlans = [
     powderRooms: 1,
     features: ["Open plan living", "Master bedroom with ensuite", "Modern kitchen", "Covered patio", "Double garage"],
     interiorImages: [
-      { id: 181, name: "Cozy Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 182, name: "Open Plan Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 183, name: "Compact Modern Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 184, name: "Covered Patio", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
-      { id: 185, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 186, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 187, name: "Main Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
+      { id: 3041, name: "Cozy Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3042, name: "Open Plan Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3043, name: "Compact Modern Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 3044, name: "Covered Patio", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 3045, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 3046, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 3047, name: "Main Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
     ]
   },
 ]

@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const duplexPlans = [
   {
-    id: 5,
+    id: 101,
     title: "3-Bedroom Duplex",
     subtitle: "Ground Floor",
     image: "/images/3Bedroom.png",
@@ -24,20 +24,66 @@ const duplexPlans = [
     powderRooms: 1,
     features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Swimming Pool", "Dining", "Veranda at the back", "Parking Space"],
     interiorImages: [
-      { id: 51, name: "Master Suite with Pool View", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 52, name: "Open Plan Lounge", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 53, name: "Modern Kitchen & Island", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 54, name: "Swimming Pool & Veranda", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
-      { id: 55, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 56, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 57, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 58, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 59, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 60, name: "Dining Area", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" }
+      { id: 1011, name: "Master Suite with Pool View", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1012, name: "Open Plan Lounge", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1013, name: "Modern Kitchen & Island", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 1014, name: "Swimming Pool & Veranda", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 1015, name: "Guest Bedroom Ensuite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1016, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1017, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1018, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 1019, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 1020, name: "Dining Area", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" }
     ]
   },
- 
-  
+  {
+    id: 102,
+    title: "4-Bedroom Luxury Duplex",
+    subtitle: "Ground Floor",
+    image: "/images/4-bedroom1.png",
+    pdfUrl: "/floorplans/floor2.pdf",
+    interiorSqft: "320 sq m",
+    exteriorSqft: "35 sq m",
+    bedrooms: 4,
+    bathrooms: 3,
+    powderRooms: 2,
+    features: ["Master bedroom with walk-in closet", "Open plan living", "Gourmet kitchen", "Swimming Pool", "Entertainment area", "Double garage", "Guest suite"],
+    interiorImages: [
+      { id: 1021, name: "Luxury Master Suite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1022, name: "Gourmet Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
+      { id: 1023, name: "Open Plan Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1024, name: "Swimming Pool Area", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 1025, name: "Guest Suite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1026, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1027, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1028, name: "Fourth Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1029, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 1030, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
+    ]
+  },
+  {
+    id: 103,
+    title: "Executive Duplex",
+    subtitle: "Upper Floor",
+    image: "/images/plan4.jpg",
+    pdfUrl: "/floorplans/floor3.pdf",
+    interiorSqft: "280 sq m",
+    exteriorSqft: "28 sq m",
+    bedrooms: 3,
+    bathrooms: 2,
+    powderRooms: 1,
+    features: ["Upper level master", "Private balcony", "Study room", "Family lounge", "Built-in wardrobes", "Skylight features"],
+    interiorImages: [
+      { id: 1031, name: "Upper Level Master", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1032, name: "Private Balcony", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
+      { id: 1033, name: "Study Room", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1034, name: "Family Lounge", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1035, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
+      { id: 1036, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
+      { id: 1037, name: "Skylight Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
+      { id: 1038, name: "Built-in Wardrobes", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" }
+    ]
+  }
 ]
 
 export default function DuplexFloorplansPage() {
