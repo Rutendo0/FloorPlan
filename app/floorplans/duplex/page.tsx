@@ -89,6 +89,7 @@ const duplexPlans = [
 export default function DuplexFloorplansPage() {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(0)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [imageIndices, setImageIndices] = useState<{[key: number]: number}>>({})
   const [selectedImage, setSelectedImage] = useState<any>(null)
   const [isImageDialogOpen, setIsImageDialogOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -102,22 +103,28 @@ export default function DuplexFloorplansPage() {
     }
   }
 
-  const nextImage = () => {
-    const currentPlan = duplexPlans[currentPlanIndex]
-    if (currentPlan && currentPlan.interiorImages) {
-      setCurrentImageIndex((prev) => 
-        (prev + 1) % currentPlan.interiorImages.length
-      )
+  const nextImage = (planId: number) => {
+    const plan = duplexPlans.find(p => p.id === planId)
+    if (plan && plan.interiorImages) {
+      setImageIndices(prev => ({
+        ...prev,
+        [planId]: ((prev[planId] || 0) + 1) % plan.interiorImages.length
+      }))
     }
   }
 
-  const prevImage = () => {
-    const currentPlan = duplexPlans[currentPlanIndex]
-    if (currentPlan && currentPlan.interiorImages) {
-      setCurrentImageIndex((prev) => 
-        (prev - 1 + currentPlan.interiorImages.length) % currentPlan.interiorImages.length
-      )
+  const prevImage = (planId: number) => {
+    const plan = duplexPlans.find(p => p.id === planId)
+    if (plan && plan.interiorImages) {
+      setImageIndices(prev => ({
+        ...prev,
+        [planId]: ((prev[planId] || 0) - 1 + plan.interiorImages.length) % plan.interiorImages.length
+      }))
     }
+  }
+
+  const getCurrentImageIndex = (planId: number) => {
+    return imageIndices[planId] || 0
   }
 
   const handleImageClick = (image: any) => {
@@ -260,7 +267,7 @@ export default function DuplexFloorplansPage() {
                   </div>
 
                   {/* Interior Images Slideshow */}
-                  {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
+                  {plan.interiorImages && plan.interiorImages.length > 0 && (
                     <div className="space-y-8">
                       <div className="text-center">
                         <h3 className="text-xl font-medium text-gray-900 mb-2">Interior Showcase</h3>
@@ -273,17 +280,17 @@ export default function DuplexFloorplansPage() {
                           <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
                             <AnimatePresence mode="wait">
                               <motion.div
-                                key={currentImageIndex}
+                                key={`${plan.id}-${getCurrentImageIndex(plan.id)}`}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
                                 className="w-full h-full cursor-pointer"
-                                onClick={() => handleImageClick(plan.interiorImages[currentImageIndex])}
+                                onClick={() => handleImageClick(plan.interiorImages[getCurrentImageIndex(plan.id)])}
                               >
                                 <Image
-                                  src={plan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
-                                  alt={plan.interiorImages[currentImageIndex].name}
+                                  src={plan.interiorImages[getCurrentImageIndex(plan.id)].image || "/placeholder.svg"}
+                                  alt={plan.interiorImages[getCurrentImageIndex(plan.id)].name}
                                   width={600}
                                   height={450}
                                   className="w-full h-full object-cover"
@@ -299,7 +306,7 @@ export default function DuplexFloorplansPage() {
                                   variant="ghost"
                                   size="sm"
                                   className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 p-0 shadow-sm"
-                                  onClick={prevImage}
+                                  onClick={() => prevImage(plan.id)}
                                 >
                                   <ChevronLeft className="h-4 w-4" />
                                 </Button>
@@ -307,7 +314,7 @@ export default function DuplexFloorplansPage() {
                                   variant="ghost"
                                   size="sm"
                                   className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 p-0 shadow-sm"
-                                  onClick={nextImage}
+                                  onClick={() => nextImage(plan.id)}
                                 >
                                   <ChevronRight className="h-4 w-4" />
                                 </Button>
@@ -316,7 +323,7 @@ export default function DuplexFloorplansPage() {
 
                             {/* Image Counter */}
                             <div className="absolute bottom-3 left-3 bg-white/90 text-gray-800 px-3 py-1 text-xs">
-                              {currentImageIndex + 1} of {plan.interiorImages.length}
+                              {getCurrentImageIndex(plan.id) + 1} of {plan.interiorImages.length}
                             </div>
                           </div>
 
@@ -327,9 +334,9 @@ export default function DuplexFloorplansPage() {
                                 <button
                                   key={index}
                                   className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                                    index === currentImageIndex ? "bg-gray-800" : "bg-gray-300 hover:bg-gray-400"
+                                    index === getCurrentImageIndex(plan.id) ? "bg-gray-800" : "bg-gray-300 hover:bg-gray-400"
                                   }`}
-                                  onClick={() => setCurrentImageIndex(index)}
+                                  onClick={() => setImageIndices(prev => ({ ...prev, [plan.id]: index }))}
                                 />
                               ))}
                             </div>
@@ -339,7 +346,7 @@ export default function DuplexFloorplansPage() {
                         {/* Current Image Info */}
                         <div className="text-center mt-6">
                           <h4 className="text-lg font-medium text-gray-900 mb-1">
-                            {plan.interiorImages[currentImageIndex].name}
+                            {plan.interiorImages[getCurrentImageIndex(plan.id)].name}
                           </h4>
                           <p className="text-gray-600 text-sm">
                             Thoughtfully designed spaces
@@ -351,13 +358,13 @@ export default function DuplexFloorplansPage() {
                           {plan.interiorImages.map((room: any, index: number) => (
                             <Button
                               key={room.id}
-                              variant={index === currentImageIndex ? "default" : "ghost"}
+                              variant={index === getCurrentImageIndex(plan.id) ? "default" : "ghost"}
                               className={`justify-start text-left py-2 px-3 text-xs transition-all duration-200 ${
-                                index === currentImageIndex 
+                                index === getCurrentImageIndex(plan.id) 
                                   ? "bg-gray-800 text-white" 
                                   : "text-gray-600 hover:bg-gray-100 border border-gray-200"
                               }`}
-                              onClick={() => setCurrentImageIndex(index)}
+                              onClick={() => setImageIndices(prev => ({ ...prev, [plan.id]: index }))}
                             >
                               {room.name}
                             </Button>
