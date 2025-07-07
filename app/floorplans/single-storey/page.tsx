@@ -148,25 +148,25 @@ export default function SingleStoreyFloorplansPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-50">
+      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-6 py-4 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
-            <ArrowLeft className="h-5 w-5 text-gray-600" />
+            <ArrowLeft className="h-5 w-5 text-stone-600" />
             <div>
-              <h1 className="text-xl font-normal text-gray-900 tracking-wide">
+              <h1 className="text-xl font-light text-stone-800 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-gray-500 uppercase">
+              <p className="text-xs text-stone-500 uppercase tracking-wider">
                 Single Storey Floor Plans
               </p>
             </div>
           </Link>
           <div className="flex space-x-3">
-            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50">
+            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
               <Share2 className="h-4 w-4 mr-2" />
               Share
             </Button>
@@ -202,10 +202,10 @@ export default function SingleStoreyFloorplansPage() {
                 {/* Plan Details - Left Side */}
                 <div className="lg:col-span-5 space-y-8">
                   <div>
-                    <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">
+                    <div className="text-sm text-stone-500 uppercase tracking-[0.15em] mb-3 font-light">
                       {plan.subtitle} • Plan {plan.id}
                     </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-stone-900 mb-8 tracking-tight leading-tight">
+                    <h1 className="text-4xl lg:text-5xl font-light text-stone-800 mb-8 tracking-tight leading-tight">
                       {plan.title}
                     </h1>
 
