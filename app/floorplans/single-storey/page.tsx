@@ -196,8 +196,22 @@ export default function SingleStoreyFloorplansPage() {
         onScroll={handleScroll}
       >
         {singleStoreyPlans.map((plan, planIndex) => (
-          <section key={plan.id} className="min-h-screen snap-start flex items-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 w-full">
+          <div key={plan.id}>
+            {/* Section Divider - appears between plans */}
+            {planIndex > 0 && (
+              <div className="h-32 flex items-center justify-center bg-gradient-to-b from-stone-100 to-white border-t border-b border-stone-200">
+                <div className="text-center">
+                  <div className="w-20 h-px bg-amber-600 mx-auto mb-4"></div>
+                  <p className="text-stone-500 text-sm uppercase tracking-[0.2em] font-light">
+                    Plan {plan.id}
+                  </p>
+                  <div className="w-20 h-px bg-amber-600 mx-auto mt-4"></div>
+                </div>
+              </div>
+            )}
+            
+            <section className="min-h-screen snap-start flex items-center">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                 {/* Plan Details - Left Side */}
                 <div className="lg:col-span-5 space-y-8">
@@ -385,6 +399,7 @@ export default function SingleStoreyFloorplansPage() {
               </div>
             </div>
           </section>
+          </div>
         ))}
       </div>
 
