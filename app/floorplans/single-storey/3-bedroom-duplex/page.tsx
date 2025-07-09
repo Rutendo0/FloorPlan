@@ -148,7 +148,7 @@ export default function ThreeBedroomDuplexPage() {
 
       <div className="flex min-h-screen">
         {/* Fixed Left Panel */}
-        <div className="w-2/5 bg-white border-r border-stone-200 sticky top-0 h-screen overflow-y-auto">
+        <div className="w-2/5 bg-white sticky top-0 h-screen overflow-y-auto">
           <div className="p-8 space-y-8">
             {/* Plan Details */}
             <div>
@@ -210,20 +210,20 @@ export default function ThreeBedroomDuplexPage() {
 
             {/* Interior Images */}
             {currentPlan.interiorImages && currentPlan.interiorImages.length > 0 && (
-              <div>
-                <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
+              <div className="bg-stone-50 rounded-2xl p-6 border border-stone-200">
+                <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
                   Interior Showcase
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {/* Current Image */}
                   <div className="relative">
-                    <div className="aspect-[4/3] bg-stone-50 rounded-xl overflow-hidden relative cursor-pointer"
+                    <div className="aspect-[16/10] bg-white rounded-xl overflow-hidden relative cursor-pointer shadow-lg"
                          onClick={() => handleImageClick(currentPlan.interiorImages[currentImageIndex])}>
                       <Image
                         src={currentPlan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
                         alt={currentPlan.interiorImages[currentImageIndex].name}
                         width={400}
-                        height={300}
+                        height={250}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -297,11 +297,12 @@ export default function ThreeBedroomDuplexPage() {
           {/* Scrollable Container */}
           <div 
             ref={scrollContainerRef}
-            className="h-screen overflow-y-auto snap-y snap-mandatory"
+            className="h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
             onScroll={handleScroll}
+            style={{ scrollBehavior: 'smooth' }}
           >
             {threeBedroomDuplexPlans.map((plan, planIndex) => (
-              <div key={plan.id} className="h-screen snap-start flex items-center justify-center p-8">
+              <div key={plan.id} className="h-screen snap-start snap-always flex items-center justify-center p-8">
                 <div className="max-w-4xl w-full">
                   <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-xl">
                     <div className="text-center mb-8">
