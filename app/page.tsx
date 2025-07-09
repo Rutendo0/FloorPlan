@@ -62,52 +62,6 @@ const features = [
 
 export default function HomePage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-amber-50/30 flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-6xl font-extralight text-stone-900 tracking-[0.3em] mb-6"
-          >
-            ASHUMI ESTATES
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-lg text-stone-600 tracking-[0.2em] uppercase font-light mb-8"
-          >
-            Luxury Redefined
-          </motion.p>
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex justify-center"
-          >
-            <div className="w-16 h-16 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
-          </motion.div>
-        </motion.div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-amber-50/30">

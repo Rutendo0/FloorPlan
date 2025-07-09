@@ -32,6 +32,29 @@ const singleStoreyCategories = [
   }
 ]
 
+const singleStoreyCategories = [
+  {
+    id: "4-bedroom",
+    title: "4-Bedroom Stand Alone",
+    subtitle: "Spacious Family Living",
+    description: "Elegant four-bedroom standalone homes with open layouts and premium finishes for modern family living",
+    icon: Home,
+    href: "/floorplans/single-storey/4-bedroom",
+    color: "bg-gradient-to-br from-green-50 to-emerald-100",
+    planCount: "2 Plans"
+  },
+  {
+    id: "3-bedroom-duplex",
+    title: "3-Bedroom Duplex",
+    subtitle: "Single Level Duplex",
+    description: "Sophisticated three-bedroom duplex designs offering comfort and style in a single storey layout",
+    icon: Building2,
+    href: "/floorplans/single-storey/3-bedroom-duplex",
+    color: "bg-gradient-to-br from-blue-50 to-blue-100",
+    planCount: "2 Plans"
+  }
+]
+
 export default function SingleStoreyFloorplansPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -51,6 +74,78 @@ export default function SingleStoreyFloorplansPage() {
           </Link>
         </div>
       </header>
+
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-b from-stone-50 to-white py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-stone-900 mb-6 tracking-tight">
+            Single Storey Living
+          </h1>
+          <p className="text-lg sm:text-xl text-stone-600 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
+            Discover our collection of elegant single level homes designed for comfort and contemporary living.
+          </p>
+        </div>
+      </section>
+
+      {/* Categories Grid */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {singleStoreyCategories.map((category, index) => {
+              const IconComponent = category.icon
+              return (
+                <div key={category.id}>
+                  <Link href={category.href} className="group block">
+                    <div className={`${category.color} rounded-3xl p-8 sm:p-12 h-full transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/20 border border-stone-200/50`}>
+                      {/* Category Header */}
+                      <div className="flex items-start justify-between mb-8">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-4 mb-4">
+                            <div className="p-3 bg-white/80 rounded-2xl backdrop-blur-sm border border-stone-200/50">
+                              <IconComponent className="h-6 w-6 text-stone-700" />
+                            </div>
+                            <span className="text-sm text-stone-600 font-medium uppercase tracking-wider">
+                              {category.planCount}
+                            </span>
+                          </div>
+                          <h3 className="text-2xl sm:text-3xl font-light text-stone-900 mb-3 tracking-tight group-hover:text-stone-700 transition-colors">
+                            {category.title}
+                          </h3>
+                          <p className="text-stone-600 font-medium mb-2 uppercase tracking-wide text-sm">
+                            {category.subtitle}
+                          </p>
+                          <p className="text-stone-700 leading-relaxed font-light">
+                            {category.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Action Button */}
+                      <div className="flex justify-between items-center">
+                        <div className="group/btn p-0 h-auto text-stone-700 hover:text-stone-900 hover:bg-transparent">
+                          <span className="text-base font-medium tracking-wide">
+                            Explore Plans
+                          </span>
+                          <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
+                        </div>
+
+                        <div className="text-right">
+                          <div className="text-2xl font-light text-stone-900 mb-1">
+                            {category.planCount.split(' ')[0]}
+                          </div>
+                          <div className="text-xs text-stone-600 uppercase tracking-wider">
+                            Available Plans
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-stone-50 to-white py-16 sm:py-24">
