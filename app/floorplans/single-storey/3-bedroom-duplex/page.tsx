@@ -2,55 +2,30 @@
 
 import type React from "react"
 import { useState, useRef } from "react"
-import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Download, Share2, ChevronLeft, ChevronRight, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import { ArrowLeft, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 const threeBedroomDuplexPlans = [
   {
-    id: 501,
-    title: "3-Bedroom Single Storey Duplex",
-    subtitle: "Single Level",
+    id: 1,
+    title: "The Harmony Duplex - 3 Bedroom",
+    description: "Modern 3-bedroom duplex with shared wall design, featuring open living spaces and private outdoor areas.",
     image: "/images/3Bedroom.png",
-    pdfUrl: "/floorplans/floor3.pdf",
-    interiorSqft: "195 sq m",
-    exteriorSqft: "20 sq m",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Open plan living", "Master bedroom with ensuite", "Modern kitchen", "Covered patio", "Parking space", "Storage room"],
     interiorImages: [
-      { id: 5011, name: "Master Bedroom Suite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 5012, name: "Open Plan Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 5013, name: "Modern Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 5014, name: "Covered Patio", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
-      { id: 5015, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 5016, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 5017, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
+      { src: "/images/plan1.png", title: "Living Area", description: "Open-plan living with modern finishes" },
+      { src: "/images/plan2.png", title: "Kitchen", description: "Contemporary kitchen design" }
     ]
   },
   {
-    id: 502,
-    title: "Compact 3-Bedroom Single Storey Duplex",
-    subtitle: "Efficient Layout",
-    image: "/images/plan2.png",
-    pdfUrl: "/floorplans/floor2.pdf",
-    interiorSqft: "175 sq m",
-    exteriorSqft: "15 sq m",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 0,
-    features: ["Compact design", "Master with ensuite", "Open living area", "Galley kitchen", "Small patio", "Single carport"],
+    id: 2,
+    title: "The Unity Duplex - 3 Bedroom",
+    description: "Sophisticated duplex design with three bedrooms, seamless flow between living areas, and private courtyards.",
+    image: "/images/Double Storey 3Bedroom.png",
     interiorImages: [
-      { id: 5021, name: "Compact Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 5022, name: "Open Living Space", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 5023, name: "Galley Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 5024, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 5025, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 5026, name: "Shared Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 5027, name: "Small Patio", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" }
+      { src: "/images/plan4.jpg", title: "Master Suite", description: "Spacious master bedroom with ensuite" },
+      { src: "/images/plan1.png", title: "Family Room", description: "Comfortable family living space" }
     ]
   }
 ]
@@ -71,6 +46,18 @@ export default function ThreeBedroomDuplexPage() {
         top: targetScrollTop,
         behavior: 'smooth'
       })
+    }
+  }
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const scrollTop = scrollContainerRef.current.scrollTop
+      const containerHeight = scrollContainerRef.current.clientHeight
+      const newIndex = Math.round(scrollTop / containerHeight)
+      if (newIndex !== currentPlanIndex && newIndex >= 0 && newIndex < threeBedroomDuplexPlans.length) {
+        setCurrentPlanIndex(newIndex)
+        setCurrentImageIndex(0)
+      }
     }
   }
 
@@ -97,268 +84,165 @@ export default function ThreeBedroomDuplexPage() {
     setIsImageDialogOpen(true)
   }
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const scrollTop = scrollContainerRef.current.scrollTop
-      const containerHeight = scrollContainerRef.current.clientHeight
-      const newIndex = Math.round(scrollTop / containerHeight)
-      if (newIndex !== currentPlanIndex && newIndex >= 0 && newIndex < threeBedroomDuplexPlans.length) {
-        setCurrentPlanIndex(newIndex)
-        setCurrentImageIndex(0)
-      }
-    }
-  }
-
   const currentPlan = threeBedroomDuplexPlans[currentPlanIndex]
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-4 sm:px-6 py-4 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/floorplans/single-storey" className="flex items-center space-x-2 sm:space-x-3">
-            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 text-stone-600" />
-            <div>
-              <h1 className="text-lg sm:text-xl font-light text-stone-800 tracking-wide">
-                ASHUMI ESTATES
-              </h1>
-              <p className="text-xs text-stone-500 uppercase tracking-wider hidden sm:block">
-                3-Bedroom Single Storey Duplex
-              </p>
-            </div>
+    <div className="min-h-screen bg-white flex">
+      {/* Left Side - Fixed Info Panel */}
+      <div className="w-2/5 bg-stone-50 p-8 flex flex-col justify-center relative">
+        <div className="absolute top-6 left-6">
+          <Link href="/floorplans/single-storey" className="flex items-center space-x-2">
+            <ArrowLeft className="h-5 w-5 text-stone-600" />
+            <span className="text-stone-600 font-medium">Back to Single Storey</span>
           </Link>
-          <div className="flex space-x-2 sm:space-x-3">
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 hidden sm:flex">
-              <Download className="h-4 w-4 mr-2" />
-              Download
-            </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 sm:hidden">
-              <Download className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 hidden sm:flex">
-              <Share2 className="h-4 w-4 mr-2" />
-              Share
-            </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100 sm:hidden">
-              <Share2 className="h-4 w-4" />
-            </Button>
-          </div>
         </div>
-      </header>
 
-      <div className="flex min-h-screen">
-        {/* Fixed Left Panel */}
-        <div className="w-2/5 bg-white sticky top-0 h-screen overflow-y-auto">
-          <div className="p-8 space-y-8">
-            {/* Plan Details */}
-            <div>
-              <div className="text-sm text-stone-500 uppercase tracking-[0.15em] mb-3 font-light">
-                {currentPlan.subtitle} • Plan {currentPlan.id}
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-light text-stone-800 mb-8 tracking-tight leading-tight">
-                {currentPlan.title}
-              </h1>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-light text-stone-900 mb-4 tracking-wide">
+              3-Bedroom Duplex Plans
+            </h1>
+            <div className="text-lg text-stone-600 mb-6">
+              Plan {currentPlan?.id} of {threeBedroomDuplexPlans.length}
+            </div>
+          </div>
 
-              {/* Specifications */}
-              <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
-                <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
-                  Specifications
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                    <span className="text-stone-600 font-light">Interior Space</span>
-                    <span className="text-stone-900 font-medium">{currentPlan.interiorSqft}</span>
-                  </div>
-                  <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                    <span className="text-stone-600 font-light">Exterior Space</span>
-                    <span className="text-stone-900 font-medium">{currentPlan.exteriorSqft}</span>
-                  </div>
-                  <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                    <span className="text-stone-600 font-light">Exposure</span>
-                    <span className="text-stone-900 font-medium">N.E.S.W</span>
-                  </div>
-                  <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                    <span className="text-stone-600 font-light">Bedrooms</span>
-                    <span className="text-stone-900 font-medium">{currentPlan.bedrooms}</span>
-                  </div>
-                  <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                    <span className="text-stone-600 font-light">Bathrooms</span>
-                    <span className="text-stone-900 font-medium">{currentPlan.bathrooms}</span>
-                  </div>
-                  <div className="flex justify-between items-center py-4">
-                    <span className="text-stone-600 font-light">Powder Rooms</span>
-                    <span className="text-stone-900 font-medium">{currentPlan.powderRooms || 0}</span>
-                  </div>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-light text-stone-800">
+              {currentPlan?.title}
+            </h2>
+            <p className="text-stone-600 leading-relaxed">
+              {currentPlan?.description}
+            </p>
+          </div>
+
+          {/* Interior Images */}
+          {currentPlan?.interiorImages && currentPlan.interiorImages.length > 0 && (
+            <div className="mt-8">
+              <h3 className="text-lg font-medium text-stone-800 mb-4">Interior Design</h3>
+              <div className="relative">
+                <div className="aspect-[4/3] bg-white rounded-2xl p-4 shadow-lg">
+                  <Image
+                    src={currentPlan.interiorImages[currentImageIndex]?.src || "/placeholder.svg"}
+                    alt={currentPlan.interiorImages[currentImageIndex]?.title || "Interior"}
+                    width={400}
+                    height={300}
+                    className="w-full h-full object-cover rounded-xl cursor-pointer"
+                    onClick={() => handleImageClick(currentPlan.interiorImages[currentImageIndex])}
+                  />
                 </div>
-              </div>
-            </div>
 
-            {/* Features */}
-            <div>
-              <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
-                Premium Features
-              </h3>
-              <div className="grid grid-cols-1 gap-4">
-                {currentPlan.features.map((feature: string, index: number) => (
-                  <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
-                    <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Interior Images */}
-            {currentPlan.interiorImages && currentPlan.interiorImages.length > 0 && (
-              <div className="bg-stone-50 rounded-2xl p-6 border border-stone-200">
-                <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
-                  Interior Showcase
-                </h3>
-                <div className="space-y-4">
-                  {/* Current Image */}
-                  <div className="relative">
-                    <div className="aspect-[16/10] bg-white rounded-xl overflow-hidden relative cursor-pointer shadow-lg"
-                         onClick={() => handleImageClick(currentPlan.interiorImages[currentImageIndex])}>
-                      <Image
-                        src={currentPlan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
-                        alt={currentPlan.interiorImages[currentImageIndex].name}
-                        width={400}
-                        height={250}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Navigation Arrows */}
-                    {currentPlan.interiorImages.length > 1 && (
-                      <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-10 h-10 p-0 shadow-lg"
-                          onClick={prevImage}
-                        >
-                          <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-10 h-10 p-0 shadow-lg"
-                          onClick={nextImage}
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </>
-                    )}
-                  </div>
+                <div className="flex justify-between items-center mt-4">
+                  <button
+                    onClick={prevImage}
+                    className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <ChevronLeft className="h-4 w-4 text-stone-600" />
+                  </button>
 
                   <div className="text-center">
-                    <h4 className="text-lg font-light text-stone-900 mb-2">
-                      {currentPlan.interiorImages[currentImageIndex].name}
-                    </h4>
+                    <p className="font-medium text-stone-800">
+                      {currentPlan.interiorImages[currentImageIndex]?.title}
+                    </p>
+                    <p className="text-sm text-stone-600">
+                      {currentImageIndex + 1} of {currentPlan.interiorImages.length}
+                    </p>
                   </div>
 
-                  {/* Dots Navigation */}
-                  {currentPlan.interiorImages.length > 1 && (
-                    <div className="flex justify-center space-x-2">
-                      {currentPlan.interiorImages.map((_: any, index: number) => (
-                        <button
-                          key={index}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            index === currentImageIndex ? "bg-amber-600" : "bg-stone-300 hover:bg-stone-400"
-                          }`}
-                          onClick={() => setCurrentImageIndex(index)}
-                        />
-                      ))}
-                    </div>
-                  )}
+                  <button
+                    onClick={nextImage}
+                    className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <ChevronRight className="h-4 w-4 text-stone-600" />
+                  </button>
                 </div>
               </div>
-            )}
-          </div>
-        </div>
+            </div>
+          )}
 
-        {/* Right Side - Scrollable Floor Plans */}
-        <div className="w-3/5 relative">
-          {/* Navigation Dots - Fixed Position */}
-          <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
-            {threeBedroomDuplexPlans.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentPlanIndex 
-                    ? "bg-amber-600 shadow-lg shadow-amber-600/50" 
-                    : "bg-amber-400/30 hover:bg-amber-400/50"
-                }`}
-                onClick={() => scrollToPlan(index)}
-              />
-            ))}
-          </div>
-
-          {/* Scrollable Container */}
-          <div 
-            ref={scrollContainerRef}
-            className="h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
-            onScroll={handleScroll}
-            style={{ scrollBehavior: 'smooth' }}
-          >
-            {threeBedroomDuplexPlans.map((plan, planIndex) => (
-              <div key={plan.id} className="h-screen snap-start snap-always flex items-center justify-center p-8">
-                <div className="max-w-4xl w-full">
-                  <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-xl">
-                    <div className="text-center mb-8">
-                      <h2 className="text-2xl font-light text-stone-900 mb-2">Floor Plan {plan.id}</h2>
-                      <p className="text-stone-600">{plan.title}</p>
-                    </div>
-                    <div className="aspect-[4/3] flex items-center justify-center bg-stone-50 rounded-2xl">
-                      <Image
-                        src={plan.image || "/placeholder.svg"}
-                        alt={plan.title}
-                        width={800}
-                        height={600}
-                        className="w-full h-full object-contain p-8"
-                        priority={planIndex === 0}
-                        loading={planIndex > 0 ? "lazy" : "eager"}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="flex items-center space-x-4 pt-6">
+            <button
+              onClick={() => scrollToPlan(Math.max(0, currentPlanIndex - 1))}
+              disabled={currentPlanIndex === 0}
+              className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow disabled:opacity-50"
+            >
+              <ChevronUp className="h-5 w-5 text-stone-600" />
+            </button>
+            <span className="text-stone-600">Scroll to navigate plans</span>
+            <button
+              onClick={() => scrollToPlan(Math.min(threeBedroomDuplexPlans.length - 1, currentPlanIndex + 1))}
+              disabled={currentPlanIndex === threeBedroomDuplexPlans.length - 1}
+              className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow disabled:opacity-50"
+            >
+              <ChevronDown className="h-5 w-5 text-stone-600" />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Full Screen Image Dialog */}
-      <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
-        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black">
-          {selectedImage && (
-            <div className="relative w-full h-full overflow-hidden">
-              <div className="absolute top-6 right-6 z-20">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                  onClick={() => setIsImageDialogOpen(false)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
+      {/* Right Side - Scrollable Floor Plans */}
+      <div className="w-3/5 relative">
+        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
+          {threeBedroomDuplexPlans.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentPlanIndex 
+                  ? "bg-blue-600 shadow-lg shadow-blue-600/50" 
+                  : "bg-blue-400/30 hover:bg-blue-400/50"
+              }`}
+              onClick={() => scrollToPlan(index)}
+            />
+          ))}
+        </div>
 
-              <div className="absolute top-6 left-6 z-20">
-                <div className="bg-black/80 text-white px-6 py-3 rounded-xl backdrop-blur-sm">
-                  <p className="text-sm font-medium">{selectedImage.name}</p>
+        <div 
+          ref={scrollContainerRef}
+          className="h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
+          onScroll={handleScroll}
+          style={{ scrollBehavior: 'smooth' }}
+        >
+          {threeBedroomDuplexPlans.map((plan, planIndex) => (
+            <div key={plan.id} className="h-screen snap-start snap-always flex items-center justify-center p-8">
+              <div className="max-w-4xl w-full">
+                <div className="bg-white rounded-3xl p-8 border border-stone-200 shadow-xl">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-light text-stone-900 mb-2">Floor Plan {plan.id}</h2>
+                    <p className="text-stone-600">{plan.title}</p>
+                  </div>
+                  <div className="aspect-[4/3] flex items-center justify-center bg-stone-50 rounded-2xl">
+                    <Image
+                      src={plan.image || "/placeholder.svg"}
+                      alt={plan.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-contain p-8"
+                      priority={planIndex === 0}
+                      loading={planIndex > 0 ? "lazy" : "eager"}
+                    />
+                  </div>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-              <div className="relative w-full h-full flex items-center justify-center">
+      <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
+        <DialogContent className="max-w-4xl w-full">
+          {selectedImage && (
+            <div className="space-y-4">
+              <div className="relative aspect-[4/3]">
                 <Image
-                  src={selectedImage.image || "/placeholder.svg"}
-                  alt={selectedImage.name}
-                  width={1400}
-                  height={1000}
-                  className="max-w-full max-h-full object-contain"
-                  priority
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  fill
+                  className="object-cover rounded-lg"
                 />
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-medium text-stone-800">{selectedImage.title}</h3>
+                <p className="text-stone-600">{selectedImage.description}</p>
               </div>
             </div>
           )}
