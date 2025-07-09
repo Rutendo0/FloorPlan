@@ -2,8 +2,9 @@
 
 import type React from "react"
 import Image from "next/image"
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Building2, Home, ArrowRight } from "lucide-react"
+import { ArrowLeft, Building, Building2, Home, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
