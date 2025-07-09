@@ -54,21 +54,14 @@ export default function DoubleStoreyFloorplansPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-stone-50 to-white py-16 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-stone-900 mb-6 tracking-tight">
-              Double Storey Living
-            </h1>
-            <p className="text-lg sm:text-xl text-stone-600 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
-              Maximize your living space with our sophisticated double storey designs. 
-              Choose from elegant 3-bedroom or spacious 4-bedroom duplex configurations.
-            </p>
-          </motion.div>
+      <section className="py-10 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-light text-stone-900 mb-6 tracking-wide">
+            Double Storey Plans
+          </h2>
+          <p className="text-xl text-stone-600 mb-12 font-light">
+          Choose From our 3 and 4 bedrooms duplexes
+          </p>
         </div>
       </section>
 
@@ -149,44 +142,6 @@ export default function DoubleStoreyFloorplansPage() {
                 </motion.div>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Info Section */}
-      <section className="py-16 sm:py-24 bg-stone-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-light text-stone-900 mb-6 tracking-tight">
-            Double Storey Advantages
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto">
-                <Home className="h-6 w-6 text-amber-600" />
-              </div>
-              <h3 className="text-lg font-medium text-stone-900">Space Efficiency</h3>
-              <p className="text-stone-600 font-light leading-relaxed">
-                Maximize living space on smaller lots with intelligent vertical design and multi-level layouts.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mx-auto">
-                <Building2 className="h-6 w-6 text-green-600" />
-              </div>
-              <h3 className="text-lg font-medium text-stone-900">Privacy Zones</h3>
-              <p className="text-stone-600 font-light leading-relaxed">
-                Separate public and private areas with bedrooms on upper levels and living spaces below.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto">
-                <ArrowRight className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-lg font-medium text-stone-900">Views & Light</h3>
-              <p className="text-stone-600 font-light leading-relaxed">
-                Enhanced natural light and potential for better views from elevated bedroom levels.
-              </p>
-            </div>
           </div>
         </div>
       </section>

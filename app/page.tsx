@@ -28,7 +28,7 @@ const categories = [
     icon: Building,
     href: "/floorplans/double-storey", 
     color: "bg-gradient-to-br from-amber-50 to-yellow-100",
-    planCount: "3 Plans"
+    planCount: "5 Plans"
   },
   {
     id: "apartments",
