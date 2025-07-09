@@ -1,448 +1,194 @@
-
 "use client"
 
 import type React from "react"
-import { useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Download, Share2, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ArrowLeft, Building2, Home, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
-const doubleStoreyPlans = [
+const doubleStoreyCategories = [
   {
-    id: 201,
-    title: "Double Storey 3-Bedroom",
-    subtitle: "Ground Floor",
-    image: "/images/Double Storey 3Bedroom.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "245 sq m",
-    exteriorSqft: "25 sq m",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Master bedroom with ensuite", "Dining", "Kitchen", "Pantry", "Enough Parking Space"],
-    interiorImages: [
-      { id: 2011, name: "Ground Floor Master", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2012, name: "Kitchen & Dining Hub", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 2013, name: "Family Living Space", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2014, name: "Double Garage & Entry", image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" },
-      { id: 2015, name: "Pantry & Storage", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" },
-      { id: 2016, name: "Powder Room", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2017, name: "Guest Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2018, name: "Formal Dining", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" }
-    ]
+    id: "3-bedroom-duplex",
+    title: "3-Bedroom Duplex",
+    subtitle: "Double Level Living",
+    description: "Elegant three-bedroom duplex designs with smart space utilization across two levels for modern family living",
+    icon: Home,
+    href: "/floorplans/double-storey/3-bedroom-duplex",
+    color: "bg-gradient-to-br from-blue-50 to-blue-100",
+    planCount: "2 Plans",
+    image: "/images/Double Storey 3Bedroom.png"
   },
   {
-    id: 202,
-    title: "Double Storey 3-Bedroom",
-    subtitle: "First Floor",
-    image: "/images/First Floor Double Storey.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "180 sq m",
-    exteriorSqft: "15 sq m",
-    bedrooms: 3,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Upper level master suite", "Two additional bedrooms", "Shared bathroom", "Store room", "Private balcony"],
-    interiorImages: [
-      { id: 2021, name: "Master Suite Upstairs", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2022, name: "Bedroom Two", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2023, name: "Bedroom Three", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2024, name: "Upper Level Living", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2025, name: "Private Balcony", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" },
-      { id: 2026, name: "Storage & Utility", image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&h=600&fit=crop" },
-      { id: 2027, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2028, name: "Study Nook", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" }
-    ]
-  },
-  {
-    id: 203,
-    title: "4-Bedroom Double Storey Semi-Detached Duplex",
-    subtitle: "Ground Floor",
-    image: "/images/4-bedroom1.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "340 sq m",
-    exteriorSqft: "25 sq m",
-    bedrooms: 4,
-    bathrooms: 2,
-    powderRooms: 1,
-    features: ["Guest bedroom with ensuite", "Main lounge", "Kitchen", "Dining", "Parking Space"],
-    interiorImages: [
-      { id: 2031, name: "Spacious Master Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2032, name: "Family Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2033, name: "Contemporary Kitchen", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" },
-      { id: 2034, name: "Formal Dining Room", image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800&h=600&fit=crop" },
-      { id: 2035, name: "Guest Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2036, name: "Fourth Bedroom Study", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2037, name: "Guest Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2038, name: "Main Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2039, name: "Powder Room", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" }
-    ]
-  },
-  {
-    id: 204,
-    title: "4-Bedroom Double Storey Semi-Detached Duplex",
-    subtitle: "First Floor",
-    image: "/images/4-Bedroom.png",
-    pdfUrl: "/floorplans/floor1.pdf",
-    interiorSqft: "250 sq m",
-    exteriorSqft: "15 sq m",
-    bedrooms: 4,
-    bathrooms: 3,
-    powderRooms: 1,
-    features: ["Upper level master suite", "Three additional bedrooms", "Family bathroom", "Study nook", "Private balcony access"],
-    interiorImages: [
-      { id: 2041, name: "Upper Level Master Suite", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2042, name: "Second Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2043, name: "Third Bedroom", image: "https://images.unsplash.com/photo-1631049035382-9847d7b0b8b2?w=800&h=600&fit=crop" },
-      { id: 2044, name: "Fourth Bedroom", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2045, name: "Upper Level Living Area", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2046, name: "Master Ensuite", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2047, name: "Family Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop" },
-      { id: 2048, name: "Study Nook", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" },
-      { id: 2049, name: "Private Balcony", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" }
-    ]
+    id: "4-bedroom-duplex",
+    title: "4-Bedroom Duplex",
+    subtitle: "Spacious Multi-Level",
+    description: "Expansive four-bedroom duplex plans offering maximum space and privacy across two thoughtfully designed levels",
+    icon: Building2,
+    href: "/floorplans/double-storey/4-bedroom-duplex",
+    color: "bg-gradient-to-br from-amber-50 to-yellow-100",
+    planCount: "2 Plans",
+    image: "/images/4-Bedroom.png"
   }
 ]
 
 export default function DoubleStoreyFloorplansPage() {
-  const [currentPlanIndex, setCurrentPlanIndex] = useState(0)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [selectedImage, setSelectedImage] = useState<any>(null)
-  const [isImageDialogOpen, setIsImageDialogOpen] = useState(false)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-  const scrollToPlan = (index: number) => {
-    setCurrentPlanIndex(index)
-    setCurrentImageIndex(0)
-    if (scrollContainerRef.current) {
-      const planElement = scrollContainerRef.current.children[index] as HTMLElement
-      planElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  const nextImage = () => {
-    const currentPlan = doubleStoreyPlans[currentPlanIndex]
-    if (currentPlan && currentPlan.interiorImages) {
-      setCurrentImageIndex((prev) => 
-        (prev + 1) % currentPlan.interiorImages.length
-      )
-    }
-  }
-
-  const prevImage = () => {
-    const currentPlan = doubleStoreyPlans[currentPlanIndex]
-    if (currentPlan && currentPlan.interiorImages) {
-      setCurrentImageIndex((prev) => 
-        (prev - 1 + currentPlan.interiorImages.length) % currentPlan.interiorImages.length
-      )
-    }
-  }
-
-  const handleImageClick = (image: any) => {
-    setSelectedImage(image)
-    setIsImageDialogOpen(true)
-  }
-
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const scrollTop = scrollContainerRef.current.scrollTop
-      const planHeight = scrollContainerRef.current.clientHeight
-      const newIndex = Math.round(scrollTop / planHeight)
-      if (newIndex !== currentPlanIndex && newIndex >= 0 && newIndex < doubleStoreyPlans.length) {
-        setCurrentPlanIndex(newIndex)
-        setCurrentImageIndex(0)
-      }
-    }
-  }
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-6 py-4 sticky top-0 z-50">
+      <header className="bg-stone-50/80 backdrop-blur-lg border-b border-stone-300/30 px-4 sm:px-6 py-6 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
-            <ArrowLeft className="h-5 w-5 text-stone-600" />
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 text-stone-600" />
             <div>
-              <h1 className="text-xl font-light text-stone-800 tracking-wide">
+              <h1 className="text-lg sm:text-xl font-light text-stone-800 tracking-wide">
                 ASHUMI ESTATES
               </h1>
-              <p className="text-xs text-stone-500 uppercase tracking-wider">
+              <p className="text-xs text-stone-500 uppercase tracking-wider hidden sm:block">
                 Double Storey Floor Plans
               </p>
             </div>
           </Link>
-          <div className="flex space-x-3">
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
-              <Download className="h-4 w-4 mr-2" />
-              Download
-            </Button>
-            <Button variant="outline" size="sm" className="border-stone-300 text-stone-600 hover:bg-stone-100">
-              <Share2 className="h-4 w-4 mr-2" />
-              Share
-            </Button>
-          </div>
         </div>
       </header>
 
-      {/* Navigation Dots - Fixed Position */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
-        {doubleStoreyPlans.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentPlanIndex 
-                ? "bg-amber-600 shadow-lg shadow-amber-600/50" 
-                : "bg-stone-400 hover:bg-amber-400"
-            }`}
-            onClick={() => scrollToPlan(index)}
-          />
-        ))}
-      </div>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-b from-stone-50 to-white py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-stone-900 mb-6 tracking-tight">
+              Double Storey Living
+            </h1>
+            <p className="text-lg sm:text-xl text-stone-600 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
+              Maximize your living space with our sophisticated double storey designs. 
+              Choose from elegant 3-bedroom or spacious 4-bedroom duplex configurations.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-      {/* Scrollable Container */}
-      <div 
-        ref={scrollContainerRef}
-        className="h-screen overflow-y-auto snap-y snap-mandatory"
-        onScroll={handleScroll}
-      >
-        {doubleStoreyPlans.map((plan, planIndex) => (
-          <section key={plan.id} className="min-h-screen snap-start flex items-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                {/* Plan Details - Left Side */}
-                <div className="lg:col-span-5 space-y-8">
-                  <div>
-                    <div className="text-sm text-stone-500 uppercase tracking-[0.15em] mb-3 font-light">
-                      {plan.subtitle} • Plan {plan.id}
-                    </div>
-                    <h1 className="text-4xl lg:text-5xl font-light text-stone-800 mb-8 tracking-tight leading-tight">
-                      {plan.title}
-                    </h1>
-
-                    {/* Specifications */}
-                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
-                      <h3 className="text-lg font-medium text-stone-900 mb-6 uppercase tracking-wider">
-                        Specifications
-                      </h3>
-                      <div className="space-y-6">
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Interior Space</span>
-                          <span className="text-stone-900 font-medium">{plan.interiorSqft}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Exterior Space</span>
-                          <span className="text-stone-900 font-medium">{plan.exteriorSqft}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Exposure</span>
-                          <span className="text-stone-900 font-medium">N.E.S.W</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Bedrooms</span>
-                          <span className="text-stone-900 font-medium">{plan.bedrooms}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4 border-b border-stone-200 last:border-b-0">
-                          <span className="text-stone-600 font-light">Bathrooms</span>
-                          <span className="text-stone-900 font-medium">{plan.bathrooms}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-4">
-                          <span className="text-stone-600 font-light">Powder Rooms</span>
-                          <span className="text-stone-900 font-medium">{plan.powderRooms || 0}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Features */}
-                  <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-8 uppercase tracking-wider">
-                      Premium Features
-                    </h3>
-                    <div className="grid grid-cols-1 gap-4">
-                      {plan.features.map((feature: string, index: number) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
-                          <div className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-stone-700 font-light leading-relaxed">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floor Plan Image & Interior Slideshow - Right Side */}
-                <div className="lg:col-span-7 space-y-12">
-                  {/* Floor Plan */}
-                  <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
-                    <div className="aspect-[4/3] lg:aspect-[3/2] flex items-center justify-center bg-stone-50 rounded-xl">
-                      <Image
-                        src={plan.image || "/placeholder.svg"}
-                        alt={plan.title}
-                        width={800}
-                        height={600}
-                        className="w-full h-full object-contain p-8"
-                        priority={planIndex === 0}
-                        loading={planIndex > 0 ? "lazy" : "eager"}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Interior Images Slideshow */}
-                  {plan.interiorImages && plan.interiorImages.length > 0 && planIndex === currentPlanIndex && (
-                    <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-lg">
-                      <div className="text-center mb-8">
-                        <h3 className="text-2xl font-light text-stone-900 mb-4">Interior Showcase</h3>
-                        <p className="text-stone-600 font-light">Experience the thoughtfully designed interior spaces</p>
-                      </div>
-
-                      <div className="space-y-8">
-                        {/* Slideshow */}
-                        <div className="relative">
-                          <div className="aspect-[4/3] bg-stone-50 rounded-xl overflow-hidden relative">
-                            <AnimatePresence mode="wait">
-                              <motion.div
-                                key={currentImageIndex}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                                className="w-full h-full cursor-pointer"
-                                onClick={() => handleImageClick(plan.interiorImages[currentImageIndex])}
-                              >
-                                <Image
-                                  src={plan.interiorImages[currentImageIndex].image || "/placeholder.svg"}
-                                  alt={plan.interiorImages[currentImageIndex].name}
-                                  width={600}
-                                  height={450}
-                                  className="w-full h-full object-cover"
-                                  loading="lazy"
-                                />
-                              </motion.div>
-                            </AnimatePresence>
-
-                            {/* Navigation Arrows */}
-                            {plan.interiorImages.length > 1 && (
-                              <>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
-                                  onClick={prevImage}
-                                >
-                                  <ChevronLeft className="h-5 w-5" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-stone-900 rounded-full w-12 h-12 p-0 shadow-lg backdrop-blur-sm border border-stone-200"
-                                  onClick={nextImage}
-                                >
-                                  <ChevronRight className="h-5 w-5" />
-                                </Button>
-                              </>
-                            )}
-
-                            {/* Image Counter */}
-                            <div className="absolute bottom-4 left-4 bg-stone-900/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
-                              {currentImageIndex + 1} of {plan.interiorImages.length}
+      {/* Categories Grid */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {doubleStoreyCategories.map((category, index) => {
+              const IconComponent = category.icon
+              return (
+                <motion.div
+                  key={category.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <Link href={category.href} className="group block">
+                    <div className={`${category.color} rounded-3xl p-8 sm:p-12 h-full transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/20 border border-stone-200/50`}>
+                      {/* Category Header */}
+                      <div className="flex items-start justify-between mb-8">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-4 mb-4">
+                            <div className="p-3 bg-white/80 rounded-2xl backdrop-blur-sm border border-stone-200/50">
+                              <IconComponent className="h-6 w-6 text-stone-700" />
                             </div>
+                            <span className="text-sm text-stone-600 font-medium uppercase tracking-wider">
+                              {category.planCount}
+                            </span>
                           </div>
-
-                          {/* Dots Navigation */}
-                          {plan.interiorImages.length > 1 && (
-                            <div className="flex justify-center mt-6 space-x-3">
-                              {plan.interiorImages.map((_: any, index: number) => (
-                                <button
-                                  key={index}
-                                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                    index === currentImageIndex ? "bg-amber-600" : "bg-stone-300 hover:bg-stone-400"
-                                  }`}
-                                  onClick={() => setCurrentImageIndex(index)}
-                                />
-                              ))}
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Current Image Info */}
-                        <div className="text-center">
-                          <h4 className="text-xl font-light text-stone-900 mb-2">
-                            {plan.interiorImages[currentImageIndex].name}
-                          </h4>
-                          <p className="text-stone-600 font-light">
-                            Thoughtfully designed spaces that blend comfort with luxury
+                          <h3 className="text-2xl sm:text-3xl font-light text-stone-900 mb-3 tracking-tight group-hover:text-stone-700 transition-colors">
+                            {category.title}
+                          </h3>
+                          <p className="text-stone-600 font-medium mb-2 uppercase tracking-wide text-sm">
+                            {category.subtitle}
+                          </p>
+                          <p className="text-stone-700 leading-relaxed font-light">
+                            {category.description}
                           </p>
                         </div>
+                      </div>
 
-                        {/* Room List */}
-                        <div className="grid grid-cols-2 gap-3">
-                          {plan.interiorImages.map((room: any, index: number) => (
-                            <Button
-                              key={room.id}
-                              variant={index === currentImageIndex ? "default" : "ghost"}
-                              className={`justify-start text-left py-3 px-4 text-sm rounded-xl transition-all duration-300 ${
-                                index === currentImageIndex 
-                                  ? "bg-amber-600 text-white shadow-lg" 
-                                  : "text-stone-700 hover:bg-stone-100 hover:text-stone-900 border border-stone-200"
-                              }`}
-                              onClick={() => setCurrentImageIndex(index)}
-                            >
-                              {room.name}
-                            </Button>
-                          ))}
+                      {/* Preview Image */}
+                      <div className="mb-8">
+                        <div className="aspect-[4/3] bg-white/50 rounded-2xl overflow-hidden border border-stone-200/50 backdrop-blur-sm">
+                          <Image
+                            src={category.image || "/placeholder.svg"}
+                            alt={category.title}
+                            width={600}
+                            height={450}
+                            className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Action Button */}
+                      <div className="flex justify-between items-center">
+                        <Button 
+                          variant="ghost" 
+                          className="group/btn p-0 h-auto text-stone-700 hover:text-stone-900 hover:bg-transparent"
+                        >
+                          <span className="text-base font-medium tracking-wide">
+                            Explore Plans
+                          </span>
+                          <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
+                        </Button>
+
+                        <div className="text-right">
+                          <div className="text-2xl font-light text-stone-900 mb-1">
+                            {category.planCount.split(' ')[0]}
+                          </div>
+                          <div className="text-xs text-stone-600 uppercase tracking-wider">
+                            Available Plans
+                          </div>
                         </div>
                       </div>
                     </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </section>
-        ))}
-      </div>
-
-      {/* Full Screen Image Dialog */}
-      <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
-        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black">
-          <div className="sr-only">
-            <h2>Full Screen Image View</h2>
-            <p>View the selected interior image in full screen</p>
+                  </Link>
+                </motion.div>
+              )
+            })}
           </div>
-          {selectedImage && (
-            <div className="relative w-full h-full overflow-hidden">
-              <div className="absolute top-6 right-6 z-20">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-black/80 hover:bg-black/90 text-white border-white/20 rounded-full w-12 h-12 p-0"
-                  onClick={() => setIsImageDialogOpen(false)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
+        </div>
+      </section>
 
-              <div className="absolute top-6 left-6 z-20">
-                <div className="bg-black/80 text-white px-6 py-3 rounded-xl backdrop-blur-sm">
-                  <p className="text-sm font-medium">{selectedImage.name}</p>
-                </div>
+      {/* Additional Info Section */}
+      <section className="py-16 sm:py-24 bg-stone-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-light text-stone-900 mb-6 tracking-tight">
+            Double Storey Advantages
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto">
+                <Home className="h-6 w-6 text-amber-600" />
               </div>
-
-              <div className="relative w-full h-full flex items-center justify-center">
-                <Image
-                  src={selectedImage.image || "/placeholder.svg"}
-                  alt={selectedImage.name}
-                  width={1400}
-                  height={1000}
-                  className="max-w-full max-h-full object-contain"
-                  priority
-                />
-              </div>
+              <h3 className="text-lg font-medium text-stone-900">Space Efficiency</h3>
+              <p className="text-stone-600 font-light leading-relaxed">
+                Maximize living space on smaller lots with intelligent vertical design and multi-level layouts.
+              </p>
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mx-auto">
+                <Building2 className="h-6 w-6 text-green-600" />
+              </div>
+              <h3 className="text-lg font-medium text-stone-900">Privacy Zones</h3>
+              <p className="text-stone-600 font-light leading-relaxed">
+                Separate public and private areas with bedrooms on upper levels and living spaces below.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto">
+                <ArrowRight className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-medium text-stone-900">Views & Light</h3>
+              <p className="text-stone-600 font-light leading-relaxed">
+                Enhanced natural light and potential for better views from elevated bedroom levels.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
