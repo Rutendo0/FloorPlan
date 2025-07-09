@@ -11,34 +11,34 @@ import { motion } from "framer-motion"
 
 const categories = [
   {
-    id: "duplex",
-    title: "Duplex Plans",
-    subtitle: "Double Storey & Semi-Detached",
-    description: "Spacious duplex designs perfect for modern families seeking luxury and functionality",
-    icon: Building2,
-    href: "/floorplans/duplex",
-    color: "bg-gradient-to-br from-blue-50 to-blue-100",
-    planCount: "3 Plans"
-  },
-  {
     id: "single-storey",
-    title: "Single Storey Plans", 
+    title: "Single Storey", 
     subtitle: "Ground Floor Living",
     description: "Elegant single level homes with open layouts and seamless indoor-outdoor flow",
     icon: Home,
     href: "/floorplans/single-storey",
     color: "bg-gradient-to-br from-green-50 to-emerald-100",
-    planCount: "2 Plans"
+    planCount: "4 Plans"
   },
   {
     id: "double-storey",
-    title: "Double Storey Plans",
+    title: "Double Storey",
     subtitle: "Two Level Living",
     description: "Multi-level designs maximizing space, privacy, and architectural sophistication",
     icon: Building,
     href: "/floorplans/double-storey", 
     color: "bg-gradient-to-br from-amber-50 to-yellow-100",
     planCount: "3 Plans"
+  },
+  {
+    id: "apartments",
+    title: "Apartments",
+    subtitle: "Modern Living Spaces",
+    description: "Contemporary apartment designs featuring luxury amenities and urban convenience",
+    icon: Building2,
+    href: "/floorplans/apartments",
+    color: "bg-gradient-to-br from-blue-50 to-blue-100",
+    planCount: "Coming Soon"
   }
 ]
 
