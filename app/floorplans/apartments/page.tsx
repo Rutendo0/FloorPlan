@@ -26,7 +26,7 @@ const apartmentCategories = [
     href: "/floorplans/apartments/one-bed",
     color: "bg-gradient-to-br from-blue-50 to-blue-100",
     planCount: "Coming Soon",
-    floor: "Multi-Floor"
+    floor: "Second Floor"
   },
   {
     id: "two-bed-second-floor",

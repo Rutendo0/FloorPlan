@@ -17,8 +17,8 @@ const doubleStoreyCategories = [
     icon: Home,
     href: "/floorplans/double-storey/3-bedroom-duplex",
     color: "bg-gradient-to-br from-blue-50 to-blue-100",
-    planCount: "2 Plans",
-    image: "/images/Double Storey 3Bedroom.png"
+    planCount: "3 Plans",
+    image: "/images/3Bedroom.png"
   },
   {
     id: "4-bedroom-duplex",

@@ -13,7 +13,7 @@ const singleStoreyCategories = [
     icon: Home,
     href: "/floorplans/single-storey/4-bedroom",
     color: "bg-gradient-to-br from-green-50 to-emerald-100",
-    planCount: "2 Plans"
+    planCount: "1 Plans"
   },
   {
     id: "3-bedroom-duplex",
@@ -23,7 +23,7 @@ const singleStoreyCategories = [
     icon: Building2,
     href: "/floorplans/single-storey/3-bedroom-duplex",
     color: "bg-gradient-to-br from-blue-50 to-blue-100",
-    planCount: "2 Plans"
+    planCount: "3 Plans"
   }
 ]
 
